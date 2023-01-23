@@ -1,0 +1,31 @@
+.header{
+    background-color: #881c1c;
+    color: white;
+    margin-bottom: 3em;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3em;
+    padding: 1em;
+  }
+  .web-intro{
+    padding: 3em 0em;
+    text-align: center;
+  }
+  .home-sec1{
+    text-align: center;
+  }
+  .task-add-buttons{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .home-button{
+    background-color: #881c1c;
+    color: white;
+    font-weight: bold;
+    border: 0.2em solid white;
+    border-radius: 0.3em;
+    padding: 1em 3em
+  }
