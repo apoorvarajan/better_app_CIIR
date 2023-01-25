@@ -1,13 +1,13 @@
 .header{
     background-color: #881c1c;
     color: white;
-    margin-bottom: 3em;
     display: inline-flex;
     align-items: center;
     width: 100%;
     font-weight: bold;
-    font-size: 1.3em;
+    font-size: 1.7em;
     padding: 1em;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 10%) !important;
   }
   .web-intro{
     padding: 3em 0em;
@@ -15,6 +15,7 @@
   }
   .home-sec1{
     text-align: center;
+    margin-top: 8em;
   }
   .task-add-buttons{
     display: inline-flex;
@@ -22,10 +23,112 @@
     justify-content: space-evenly;
   }
   .home-button{
-    background-color: #881c1c;
+    background-color: grey;
     color: white;
     font-weight: bold;
-    border: 0.2em solid white;
+    /* border: 0.2em solid white; */
     border-radius: 0.3em;
-    padding: 1em 3em
+    padding: 0.8em 3em;
+    font-size: 1.2em;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%) !important;
+  }
+  .tasktable_container{
+      width: 100%;
+      text-align: center;
+      margin-top: 8em;
+  }
+  .tasktable{
+    margin: 2em auto;
+    font-weight: bold;
+    color: black;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 5%), 0 6px 20px 0 rgb(0 0 0 / 5%) !important;
+    /* padding: 0em 1em 1em 1em; */
+    background: linear-gradient(90deg, rgba(164,158,158,1) 0%, rgba(238,238,238,1) 84%);
+    border-collapse: collapse;
+  }
+  .task_table_head{
+        box-shadow: 0 10px 16px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 10%) !important;
+        background: grey;
+        color: white;
+  }
+  .tl_elem{
+    padding: 1em;
+    border: 0.1em solid white;
+  }
+  .tl_cell{
+    padding: 1em 2em;
+  }
+  .th_cell{
+    font-size: 1.2em;
+    background: padding-box;
+    padding: 1em 0em;
+  }
+  .site_name{
+    margin: 1em 1em;
+    font-size: 2em;
+    font-weight: bold;
+    color: #1e1e1e;
+    width: 30%;
+  }
+  .addtask_container{
+    margin: 5em 0em;
+  }
+  .addtask_sec{
+    margin: auto;
+    width: 50%;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%) !important;
+    background: linear-gradient(90deg, rgba(164,158,158,1) 0%, rgba(238,238,238,1) 84%);
+  }
+  .new_task_heading{
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    padding: 0.8em 0em;
+    font-weight: bold;
+    /* box-shadow: 0 10px 16px 0 rgb(0 0 0 / 2%), 0 6px 20px 0 rgb(0 0 0 / 2%) !important; */
+    border-bottom: 0.06em solid #881c1c;
+    border-radius: 0.3em;
+  }
+  .form_add_task{
+    display: table;
+    width: 90%;
+    margin: auto;
+    font-size: 1.3em;
+  }
+  .form_elem_at{
+    margin: 1em;
+  }
+  .form_input_at{
+    display: table-cell;
+    width: 100%;
+    height: 2em;
+    margin-top: 1em;
+    font-size: 0.8em;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 5%), 0 6px 20px 0 rgb(0 0 0 / 5%) !important;
+    border: 0.05em solid grey;
+    border-radius: 0.3em;
+    /* border: none; */
+  }
+  .form_label_at{
+      display: table-cell;
+  }
+  .form_at_tn{
+      height: 5em;
+      font-size: 1em;
+  }
+  textarea{
+    height: 8em;
+  }
+  .form_at_submit{
+    border: 0.05em solid lightgray;
+    height: 3em;
+    width: 100%;
+    border-radius: 0.3em;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 3%), 0 6px 20px 0 rgb(0 0 0 / 3%) !important;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9em;
+    background: gray;
+  }
+  .form_at_submit_wrap{
+    margin: 3em 1em 1em  1em;
   }

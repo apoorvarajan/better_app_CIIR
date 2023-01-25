@@ -8,6 +8,7 @@ export interface State {
     tasks: any;
     c: number;
     task_set:boolean;
+    add_task_screen:boolean;
 }
 
 const composeEnhancers =
