@@ -1,4 +1,4 @@
-import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK } from "./types";
+import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SELECT_TASK } from "./types";
 import {Dispatch} from 'redux'
 import {getTasks_api,postTasks_api} from '../../controllers/apicalls'
 import Home from "../../components/Home";
@@ -16,10 +16,17 @@ export const add_task = (obj_t:any) => {
     }
 }
 
-export const setTasks = (tasks:any): HomeActions => {return {
-    type: SET_TASKS,
-    tasks
-}};
+// export const selectTask = (val:string) => {{
+//         type: SELECT_TASK;
+//         val:val
+// }}
+
+export const setTasks = (tasks:any): HomeActions => {
+    return {
+        type: SET_TASKS,
+        tasks
+    }
+};
 
 export const decrementCounter = (): HomeActions => ({
     type: DECREMENT

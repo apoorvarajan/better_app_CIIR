@@ -5,7 +5,8 @@ import {
     getTasks,
     decrementCounter,
     addTask_click,
-    add_task
+    add_task,
+    selectTask
   } from "../store/task";
 import HomeComponent from '../components/Home'
   
@@ -20,7 +21,9 @@ const mapStateToProps = (state: HomeState) => ({
     getTasks:()=>getTasks()(dispatch),
     decrementCounter: () => dispatch(decrementCounter()),
     addTask_click:()=>dispatch(addTask_click()),
-    add_task:(t_obj:any)=>add_task(t_obj)(dispatch)
+    add_task:(t_obj:any)=>add_task(t_obj)(dispatch),
+    //selectTask: (val:string) => dispatch(selectTask(val))
+
   });
   
   export default connect(

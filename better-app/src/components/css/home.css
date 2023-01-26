@@ -23,7 +23,7 @@
     justify-content: space-evenly;
   }
   .home-button{
-    background-color: grey;
+    background-color: #881c1c;
     color: white;
     font-weight: bold;
     /* border: 0.2em solid white; */
@@ -38,22 +38,22 @@
       margin-top: 8em;
   }
   .tasktable{
-    margin: 2em auto;
+    margin: 2em;
     font-weight: bold;
     color: black;
     box-shadow: 0 10px 16px 0 rgb(0 0 0 / 5%), 0 6px 20px 0 rgb(0 0 0 / 5%) !important;
     /* padding: 0em 1em 1em 1em; */
-    background: linear-gradient(90deg, rgba(164,158,158,1) 0%, rgba(238,238,238,1) 84%);
+    /* background: linear-gradient(90deg, rgba(164,158,158,1) 0%, rgba(238,238,238,1) 84%); */
     border-collapse: collapse;
   }
   .task_table_head{
         box-shadow: 0 10px 16px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 10%) !important;
-        background: grey;
+        background: #881c1c;
         color: white;
   }
   .tl_elem{
     padding: 1em;
-    border: 0.1em solid white;
+    border: 0.1em solid #881c1c;
   }
   .tl_cell{
     padding: 1em 2em;
@@ -75,9 +75,11 @@
   }
   .addtask_sec{
     margin: auto;
-    width: 50%;
+    width: 60%;
     box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%) !important;
-    background: linear-gradient(90deg, rgba(164,158,158,1) 0%, rgba(238,238,238,1) 84%);
+    /* background: linear-gradient(90deg, rgba(164,158,158,1) 0%, rgba(238,238,238,1) 84%); */
+    border: 0.2em solid #881c1c;
+    border-radius: 0.3em;
   }
   .new_task_heading{
     margin-bottom: 1em;
@@ -127,7 +129,7 @@
     color: white;
     font-weight: bold;
     font-size: 0.9em;
-    background: gray;
+    background: #881c1c;
   }
   .form_at_submit_wrap{
     margin: 3em 1em 1em  1em;

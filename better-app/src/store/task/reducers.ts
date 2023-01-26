@@ -1,11 +1,12 @@
-import { HomeState, HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK } from "./types";
+import { HomeState, HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SELECT_TASK } from "./types";
 import { Action } from "redux";
 
 const initialState: HomeState = {
     tasks:[],
     c:5,
     task_set: false,
-    add_task_screen: false
+    add_task_screen: false,
+    task_click:''
 };
 
 const reducer = (
@@ -19,6 +20,8 @@ const reducer = (
             return { ...state, c:state.c-1 };
         case ADD_TASK_CLICK:
             return { ...state, add_task_screen: true}
+        case SELECT_TASK:
+            return {...state, task_click:action.val}
         default:
             return state;
     }
