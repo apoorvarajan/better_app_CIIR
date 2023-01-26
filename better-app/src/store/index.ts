@@ -1,8 +1,7 @@
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import logger from "redux-logger";
 
 import reducers from "./task/reducers";
-import { HomeState } from "./task/types";
 
 export interface State {
     tasks: any;

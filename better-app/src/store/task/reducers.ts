@@ -1,5 +1,4 @@
 import { HomeState, HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SELECT_TASK } from "./types";
-import { Action } from "redux";
 
 const initialState: HomeState = {
     tasks:[],

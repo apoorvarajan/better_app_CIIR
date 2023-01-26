@@ -1,7 +1,6 @@
-import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SELECT_TASK } from "./types";
+import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK } from "./types";
 import {Dispatch} from 'redux'
 import {getTasks_api,postTasks_api} from '../../controllers/apicalls'
-import Home from "../../components/Home";
 
 export const  getTasks = () => {
     return async (dispatch:Dispatch) => {
