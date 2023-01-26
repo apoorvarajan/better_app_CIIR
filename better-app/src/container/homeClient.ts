@@ -1,11 +1,11 @@
-import { Dispatch,bindActionCreators } from "redux";
+import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import {
     HomeState,
-    setTasks,
     getTasks,
     decrementCounter,
-    addTask_click
+    addTask_click,
+    add_task
   } from "../store/task";
 import HomeComponent from '../components/Home'
   
@@ -19,7 +19,8 @@ const mapStateToProps = (state: HomeState) => ({
     //gettasks: () => dispatch(getTasks()),
     getTasks:()=>getTasks()(dispatch),
     decrementCounter: () => dispatch(decrementCounter()),
-    addTask_click:()=>dispatch(addTask_click())
+    addTask_click:()=>dispatch(addTask_click()),
+    add_task:(t_obj:any)=>add_task(t_obj)(dispatch)
   });
   
   export default connect(

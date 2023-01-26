@@ -12,7 +12,7 @@ class Home extends React.Component<any,any>{
         }
     }
     render(){
-        const {tasks}=this.props
+        const {tasks,add_task}=this.props
         return<div>
             <div className="header">
                 University of Massachusetts Amherst
@@ -29,7 +29,7 @@ class Home extends React.Component<any,any>{
                         Add Task
                     </div>
                 </div>
-                {this.props.add_task_screen? <AddTask/>:
+                {this.props.add_task_screen? <AddTask add_task={add_task}/>:
                 <TaskList tasks={tasks}/>}
             </div>
         </div>
