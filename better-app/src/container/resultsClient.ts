@@ -6,13 +6,19 @@ import {
     decrementCounter,
     addTask_click,
     add_task,
+    submission,
+    docDetailPage
   } from "../store/task";
-import HomeComponent from '../components/Home'
+import ResultComponent from '../components/Result'
   
 const mapStateToProps = (state: HomeState) => ({
     tasks: state.tasks,
     c:state.c,
-    add_task_screen:state.add_task_screen
+    add_task_screen:state.add_task_screen,
+    docs:state.docs,
+    doc_table:state.doc_table,
+    show_doc_detail:state.show_doc_detail,
+    docNum:state.docNum
   });
   
   const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -21,11 +27,12 @@ const mapStateToProps = (state: HomeState) => ({
     decrementCounter: () => dispatch(decrementCounter()),
     addTask_click:()=>dispatch(addTask_click()),
     add_task:(t_obj:any)=>add_task(t_obj)(dispatch),
-    //selectTask: (val:string) => dispatch(selectTask(val))
+    submission:(taskNum:string,reqNum:string)=>submission(taskNum,reqNum)(dispatch),
+    docDetailPage: (docNum:any)=> dispatch(docDetailPage(docNum))
 
   });
   
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(HomeComponent);
+  )(ResultComponent);

@@ -3,13 +3,11 @@ import TaskList from './TaskList'
 import './css/home.css'
 import { AddTask } from './AddTask'
 class Home extends React.Component<any,any>{
-    dec(gettask?:boolean){
-        if (gettask){
-            this.props.getTasks()
-        }
-        else{
-            this.props.addTask_click()
-        }
+    dec(){
+        this.props.addTask_click()
+    }
+    componentDidMount(){
+        this.props.getTasks()
     }
     render(){
         const {tasks,add_task}=this.props
@@ -22,9 +20,6 @@ class Home extends React.Component<any,any>{
             </div>
             <div className="home-sec1">
                 <div className="task-add-buttons">
-                    <div className="home-button" onClick={()=>this.dec(true)}>
-                        Tasks
-                    </div>
                     <div className="home-button" onClick={()=>this.dec()}>
                         Add Task
                     </div>
