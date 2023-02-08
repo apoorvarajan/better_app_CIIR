@@ -123,16 +123,18 @@
   .form_at_submit{
     border: 0.05em solid lightgray;
     height: 3em;
-    width: 100%;
+    width: 45%;
     border-radius: 0.3em;
     box-shadow: 0 10px 16px 0 rgb(0 0 0 / 3%), 0 6px 20px 0 rgb(0 0 0 / 3%) !important;
     color: white;
     font-weight: bold;
     font-size: 0.9em;
     background: #881c1c;
+    margin: auto;
   }
   .form_at_submit_wrap{
     margin: 3em 1em 1em  1em;
+    display: flex;
   }
   .hidden_re{
       display: none;
@@ -211,4 +213,20 @@
     display: block;
   }
   .show {display: block;}
+  .cancel_add_task{
+    border: 0.05em solid #881c1c;
+    height: 3em;
+    width: 45%;
+    border-radius: 0.3em;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 3%), 0 6px 20px 0 rgb(0 0 0 / 3%) !important;
+    color: #881c1c;
+    font-weight: bold;
+    font-size: 0.9em;
+    background: white;
+    margin: auto;
+    line-height: 3em;
+  }
+  .selected_item{
+    background: #f0c1c1;
+  }
   

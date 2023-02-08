@@ -1,6 +1,7 @@
-import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SET_DOCS, DOC_DETAIL } from "./types";
+import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SET_DOCS, DOC_DETAIL, ADD_REQUEST_CLICK, TASK_SELECTED } from "./types";
 import {Dispatch} from 'redux'
 import {getTasks_api,postTasks_api, submission_api} from '../../controllers/apicalls'
+import Home from "../../components/Home";
 
 export const  getTasks = () => {
     return async (dispatch:Dispatch) => {
@@ -52,6 +53,17 @@ export const decrementCounter = (): HomeActions => ({
     type: DECREMENT
 });
 
-export const addTask_click = (): HomeActions => ({
-    type:ADD_TASK_CLICK
+export const addTask_click = (val:boolean): HomeActions => ({
+    type:ADD_TASK_CLICK,
+    val:val
 }) 
+
+export const addRequest_click = (val:boolean): HomeActions => ({
+    type:ADD_REQUEST_CLICK,
+    val:val
+})
+
+export const task_selected = (val:number): HomeActions => ({
+    type:TASK_SELECTED,
+    val
+})

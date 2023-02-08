@@ -5,11 +5,14 @@ export interface HomeState {
     c:number;
     task_set:boolean;
     add_task_screen:boolean;
+    add_request_screen:boolean;
     task_click:string;
     docs:any;
     doc_table:any;
     show_doc_detail:boolean;
     docNum:any;
+    subRes:any;
+    task_select:number;
 }
 
 export const SET_TASKS = "SET_TASKS"
@@ -18,6 +21,8 @@ export const ADD_TASK_CLICK = "ADD_TASK_CLICK"
 export const SELECT_TASK = "SELECT_TASK"
 export const SET_DOCS = "SET_DOCS"
 export const DOC_DETAIL="DOC_DETAIL"
+export const ADD_REQUEST_CLICK="ADD_REQUEST_CLICK"
+export const TASK_SELECTED="TASK_SELECTED"
 
 export interface SetTasks extends Action {
     type: typeof SET_TASKS;
@@ -34,7 +39,13 @@ export interface DecrementAction extends Action {
 }
 
 export interface AddTaskClick extends Action {
-    type: typeof ADD_TASK_CLICK
+    type: typeof ADD_TASK_CLICK;
+    val: boolean;
+}
+
+export interface AddRequestClick extends Action {
+    type: typeof ADD_REQUEST_CLICK;
+    val: boolean;
 }
 
 export interface SelectTask extends Action {
@@ -47,4 +58,10 @@ export interface DocDetail extends Action {
     docNum: any
 }
 
-export type HomeActions = SetTasks | DecrementAction | AddTaskClick | SelectTask | SetDocs | DocDetail;
+
+export interface TaskSelected extends Action {
+    type: typeof TASK_SELECTED;
+    val:number
+}
+
+export type HomeActions = SetTasks | DecrementAction | AddTaskClick | SelectTask | SetDocs | DocDetail | AddRequestClick | TaskSelected;

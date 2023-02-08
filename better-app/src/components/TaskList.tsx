@@ -20,7 +20,8 @@ class TaskList extends React.Component<any,any> {
                     "taskStmt":tasks[i].taskStmt,
                     "taskNarr":tasks[i].taskNarr,
                     "req_no":(tasks[i].requests && tasks[i].requests.length) || 0,
-                    "is_expanded":false
+                    "is_expanded":false,
+                    'is_selected':false
                 })
                 if(tasks[i].requests && tasks[i].requests.length){
                     const req=tasks[i].requests
@@ -46,8 +47,24 @@ class TaskList extends React.Component<any,any> {
             if(obj[i].reqNum && obj[i].taskNum==taskNum){
                 obj[i].hidden=!obj[i].hidden
             }
-            else if(obj[i].taksNum==taskNum){
-                obj[i].is_expanded=true
+            if(obj[i].taskNum==taskNum){
+                obj[i].is_expanded=!obj[i].is_expanded
+            }
+        }
+        this.setState({
+            tasks_list:obj
+        })
+    }
+    selectTask(taskNum:number){
+        const {tasks_list}=this.state
+        let obj=tasks_list
+        for(let i=0;i<obj.length;i++){
+            if (obj[i].taskNum == taskNum){
+                obj[i].is_selected = !obj[i].is_selected
+                this.props.task_selected(taskNum)
+            }
+            else if(taskNum){
+                obj[i].is_selected = false
             }
         }
         this.setState({
@@ -71,7 +88,7 @@ class TaskList extends React.Component<any,any> {
                         </tr>
                         {tasks_list.map((item:any,key:any)=>{
                             if(!item.reqNum){
-                                return <tr id={"task_" + item.taskNum} className="tl_elem">
+                                return <tr id={"task_" + item.taskNum} className={item.is_selected?"tl_elem selected_item":"tl_elem"} onClick={()=>this.selectTask(item.taskNum)}>
                                                 <td className="tl_cell">{item.taskNum}</td>
                                                 <td className="tl_cell">{item.taskTitle}</td>
                                                 <td className="tl_cell"> {item.taskStmt} </td>

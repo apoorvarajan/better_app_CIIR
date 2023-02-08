@@ -25,7 +25,6 @@ const mapStateToProps = (state: HomeState) => ({
     //gettasks: () => dispatch(getTasks()),
     getTasks:()=>getTasks()(dispatch),
     decrementCounter: () => dispatch(decrementCounter()),
-    addTask_click:()=>dispatch(addTask_click()),
     add_task:(t_obj:any)=>add_task(t_obj)(dispatch),
     submission:(taskNum:string,reqNum:string)=>submission(taskNum,reqNum)(dispatch),
     docDetailPage: (docNum:any)=> dispatch(docDetailPage(docNum))

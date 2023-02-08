@@ -4,7 +4,7 @@ class Results extends React.Component<any,any>{
 
     componentDidMount(){
         let {submission,getTasks}=this.props
-        getTasks()
+        //getTasks()
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
         submission(urlParams.taskNum,urlParams.reqNum)
     }

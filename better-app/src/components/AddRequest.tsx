@@ -1,16 +1,16 @@
 import React from 'react'
-const add_task_click=(e:any,props:any)=>{
+const add_request_click=(e:any,props:any)=>{
     e.preventDefault()
     let at_obj = Object.fromEntries(new FormData(e.target))
-    props.add_task(at_obj)
+    props.add_request(at_obj)
 }
-export const AddTask = (props:any) =>{
+export const AddRequest = (props:any) =>{
     return <div className="addtask_container">
     <div className="addtask_sec">
         <div className="new_task_heading">
             Create a New Task
         </div>
-        <form id="at_form" className="form_add_task" onSubmit={(e)=>add_task_click(e,props)}>
+        <form id="at_form" className="form_add_task" onSubmit={(e)=>add_request_click(e,props)}>
             <div className="form_elem_at">
                 <label className="form_label_at">
                     Task Title : 
@@ -30,7 +30,7 @@ export const AddTask = (props:any) =>{
                 <textarea id="tN_at" className="form_input_at form_at_textarea" required name="taskNarr"/>
             </div>
             <div className="form_at_submit_wrap">
-                <div className="cancel_add_task" onClick={()=>props.add_task_screen(false)}>Cancel</div>
+                <div className="cancel_add_task" onClick={()=>props.add_request_screen(false)}>Cancel</div>
                 <input type="submit" className="form_at_submit"/>
             </div>
         </form>
