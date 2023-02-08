@@ -3,7 +3,7 @@ import './css/home.css'
 class Results extends React.Component<any,any>{
 
     componentDidMount(){
-        let {submission,getTasks}=this.props
+        let {submission}=this.props
         //getTasks()
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
         submission(urlParams.taskNum,urlParams.reqNum)
@@ -20,7 +20,7 @@ class Results extends React.Component<any,any>{
                 Show Doc Detail Page: {this.props.docNum}
             </div>
         }
-        const {tasks,docs,doc_table}=this.props
+        const {tasks,doc_table}=this.props
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
         if (urlParams.reqNum && urlParams.taskNum && tasks){
             let sel_task= tasks.filter((item:any)=>{return item.taskNum === urlParams.taskNum})[0]
