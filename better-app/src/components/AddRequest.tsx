@@ -6,28 +6,26 @@ const add_request_click=(e:any,props:any)=>{
 }
 export const AddRequest = (props:any) =>{
     return <div className="addtask_container">
+        <table className="sub_page_top">
+                            <tr className="row1">
+                                <td className="subheading_1">
+                                    Task Statement:
+                                </td>
+                                <td className="val1">
+                                    {props.sel_task && props.sel_task.taskStmt}
+                                </td>
+                            </tr>
+        </table>
     <div className="addtask_sec">
         <div className="new_task_heading">
-            Create a New Task
+            Create Request
         </div>
         <form id="at_form" className="form_add_task" onSubmit={(e)=>add_request_click(e,props)}>
             <div className="form_elem_at">
                 <label className="form_label_at">
-                    Task Title : 
+                    Request Text : 
                 </label>
-                <input id="tT_at" type="text" className="form_input_at" required name="taskTitle"/>
-            </div>
-            <div className="form_elem_at">
-                <label className="form_label_at">
-                    Task Statement:
-                </label>
-                <input id="tS_at" type="text" className="form_input_at" required name="taskStmt"/>
-            </div>
-            <div className="form_elem_at form_at_tn">
-                <label className="form_label_at">
-                    Task Narration:
-                </label>
-                <textarea id="tN_at" className="form_input_at form_at_textarea" required name="taskNarr"/>
+                <input id="tT_at" type="text" className="form_input_at" required name="reqText"/>
             </div>
             <div className="form_at_submit_wrap">
                 <div className="cancel_add_task" onClick={()=>props.add_request_screen(false)}>Cancel</div>

@@ -4,7 +4,6 @@ import {
     HomeState,
     getTasks,
     decrementCounter,
-    addTask_click,
     add_task,
     submission,
     docDetailPage

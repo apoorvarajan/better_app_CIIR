@@ -35,7 +35,7 @@ const reducer = (
         case SET_DOCS:
             return {...state, subRes:action.docs}
         case TASK_SELECTED:
-            return {...state,task_select:action.val == state.task_select?-1:action.val}
+            return {...state,task_select:action.val === state.task_select?-1:action.val}
         default:
             return state;
     }

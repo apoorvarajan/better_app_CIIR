@@ -11,7 +11,7 @@ class TaskList extends React.Component<any,any> {
     }
     componentDidUpdate(prevProps:any){
         const {tasks}=this.props
-        if (tasks != prevProps.tasks){
+        if (tasks !== prevProps.tasks){
             let obj=[]
             for(let i=0;i<tasks.length;i++){
                 obj.push({
@@ -44,10 +44,10 @@ class TaskList extends React.Component<any,any> {
         const {tasks_list}=this.state
         let obj=tasks_list
         for(let i=0;i<obj.length;i++){
-            if(obj[i].reqNum && obj[i].taskNum==taskNum){
+            if(obj[i].reqNum && obj[i].taskNum===taskNum){
                 obj[i].hidden=!obj[i].hidden
             }
-            if(obj[i].taskNum==taskNum){
+            if(obj[i].taskNum===taskNum){
                 obj[i].is_expanded=!obj[i].is_expanded
             }
         }
@@ -59,8 +59,8 @@ class TaskList extends React.Component<any,any> {
         const {tasks_list}=this.state
         let obj=tasks_list
         for(let i=0;i<obj.length;i++){
-            if (obj[i].taskNum == taskNum){
-                obj[i].is_selected = !obj[i].is_selected
+            if (obj[i].taskNum === taskNum){
+                obj[i].is_selected === !obj[i].is_selected
                 this.props.task_selected(taskNum)
             }
             else if(taskNum){

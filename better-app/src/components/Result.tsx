@@ -23,8 +23,8 @@ class Results extends React.Component<any,any>{
         const {tasks,docs,doc_table}=this.props
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
         if (urlParams.reqNum && urlParams.taskNum && tasks){
-            let sel_task= tasks.filter((item:any)=>{return item.taskNum == urlParams.taskNum})[0]
-            let sel_req = sel_task && sel_task.requests.filter((item:any)=>{return item.reqNum == urlParams.reqNum})[0]
+            let sel_task= tasks.filter((item:any)=>{return item.taskNum === urlParams.taskNum})[0]
+            let sel_req = sel_task && sel_task.requests.filter((item:any)=>{return item.reqNum === urlParams.reqNum})[0]
             let today_dt = new Date()
             let date = today_dt.toDateString()
             return <div> 

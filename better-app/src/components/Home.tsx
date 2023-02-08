@@ -23,7 +23,7 @@ class Home extends React.Component<any,any>{
                     <div className="home-button" onClick={()=>this.dec()}>
                         Add Task
                     </div>
-                    {this.props.task_select != -1 ?<div className="home-button" onClick={()=>this.dec()}>
+                    {this.props.task_select !== -1 ?<div className="home-button" onClick={()=>this.dec()}>
                         Add Request
                     </div>:null}
                 </div>:null}
