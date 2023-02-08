@@ -60,7 +60,7 @@ class TaskList extends React.Component<any,any> {
         let obj=tasks_list
         for(let i=0;i<obj.length;i++){
             if (obj[i].taskNum === taskNum){
-                obj[i].is_selected === !obj[i].is_selected
+                obj[i].is_selected = !obj[i].is_selected
                 this.props.task_selected(taskNum)
             }
             else if(taskNum){
