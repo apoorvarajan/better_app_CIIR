@@ -15,7 +15,9 @@ export interface State {
     show_doc_detail:boolean;
     docNum:any;
     subRes:any;
-    task_select:number
+    task_select:number;
+    searchResults:any;
+    sR_page:number
 }
 
 const composeEnhancers =

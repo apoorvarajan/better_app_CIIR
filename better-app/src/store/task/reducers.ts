@@ -12,7 +12,9 @@ const initialState: HomeState = {
     show_doc_detail:false,
     docNum:null,
     subRes:null,
-    task_select:-1
+    task_select:-1,
+    searchResults:null,
+    sR_page:0
 };
 
 const reducer = (
@@ -33,7 +35,7 @@ const reducer = (
         case DOC_DETAIL:
             return {...state, show_doc_detail:true,docNum:action.docNum}
         case SET_DOCS:
-            return {...state, subRes:action.docs}
+            return {...state, subRes:action.docs, searchResults:action.docs.searchResults, sR_page:10}
         case TASK_SELECTED:
             return {...state,task_select:action.val === state.task_select?-1:action.val}
         default:

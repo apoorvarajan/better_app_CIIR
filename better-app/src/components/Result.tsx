@@ -1,12 +1,34 @@
 import React from 'react'
 import './css/home.css'
 class Results extends React.Component<any,any>{
+    constructor(props:any){
+        super(props);
+        this.state={
+            low:0,
+            up:0
+        }
+    }
 
     componentDidMount(){
         let {submission}=this.props
         //getTasks()
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
-        submission(urlParams.taskNum,urlParams.reqNum)
+        let _this=this
+        submission(urlParams.taskNum,urlParams.reqNum).then(()=>{
+            let {searchResults}=_this.props
+            let pu=0;
+            if(searchResults && searchResults.hits && searchResults.hits.length>0){
+                if(searchResults.hits.length<10){
+                    pu=searchResults.hits.length
+                }
+                else{
+                    pu=10
+                }
+            }
+            _this.setState({
+                up:pu
+            })
+        })
     }
     getDocdetails(docNum:any,key:any){
         this.props.docDetailPage(docNum)
@@ -20,7 +42,8 @@ class Results extends React.Component<any,any>{
                 Show Doc Detail Page: {this.props.docNum}
             </div>
         }
-        const {tasks,doc_table}=this.props
+        const {tasks,doc_table, searchResults, sR_page}=this.props
+        const {low,up} = this.state
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
         if (urlParams.reqNum && urlParams.taskNum && tasks){
             let sel_task= tasks.filter((item:any)=>{return item.taskNum === urlParams.taskNum})[0]
@@ -79,22 +102,18 @@ class Results extends React.Component<any,any>{
                                 {/* <button className="dropbtn"> Submit </button> */}
                             </div>
                         </div>
-                        <table>
-                            {doc_table && doc_table.map((item:any,key:any)=>{
-                                return <tr>
-                                            <td> {key+1} </td>
-                                            <td>{item.docNum}</td>
-                                            <td>{item.text}</td>
-                                            <td onClick={()=> this.getDocdetails(item.docNum,key)}> Details </td>
-                                    </tr>
-                            })}
-                        </table>
                         <table className="doc_table">
-                            {[1,2,3,4,5,6,7,8,9,10].map((item:any,key:any)=>{
+                            <tr className="task_table_head doc_table_row">
+                                <th className="th_cell">SN</th>
+                                <th className="th_cell">Document Id</th>
+                                <th className="th_cell">Snippet from document</th>
+                                <th></th>
+                            </tr>
+                            {searchResults && searchResults.hits && searchResults.hits.length>0 && searchResults.hits.slice(low,up).map((item:any,key:any)=>{
                                 return <tr className="doc_table_row">
                                             <td className="doc_table_col"> {key+1 || "No."} </td>
-                                            <td className="doc_table_col">{item.docNum || "Document no."}</td>
-                                            <td className="doc_table_col">{item.text || "...this is a snippet from the document..."}</td>
+                                            <td className="doc_table_col">{item.docid}</td>
+                                            <td className="doc_table_col">{item.docText.slice(0,75)+"............."}</td>
                                             <td className="details_button" onClick={()=> this.getDocdetails(item.docNum,key)}> Details </td>
                                     </tr>
                             })}

@@ -13,6 +13,8 @@ export interface HomeState {
     docNum:any;
     subRes:any;
     task_select:number;
+    searchResults:any;
+    sR_page:number
 }
 
 export const SET_TASKS = "SET_TASKS"

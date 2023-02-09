@@ -18,7 +18,9 @@ const mapStateToProps = (state: HomeState) => ({
     doc_table:state.doc_table,
     show_doc_detail:state.show_doc_detail,
     docNum:state.docNum,
-    subRes:state.subRes
+    subRes:state.subRes,
+    searchResults:state.searchResults,
+    sR_page:state.sR_page
   });
   
   const mapDispatchToProps = (dispatch: Dispatch) => ({
