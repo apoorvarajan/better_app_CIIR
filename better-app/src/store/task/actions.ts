@@ -1,6 +1,7 @@
-import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SET_DOCS, DOC_DETAIL, ADD_REQUEST_CLICK, TASK_SELECTED } from "./types";
+import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SET_DOCS, DOC_DETAIL, ADD_REQUEST_CLICK, TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION } from "./types";
 import {Dispatch} from 'redux'
-import {getTasks_api,postTasks_api, submission_api} from '../../controllers/apicalls'
+import {getTasks_api,postTasks_api, submission_api,postRequest_api} from '../../controllers/apicalls'
+import Home from "../../components/Home";
 
 export const  getTasks = () => {
     return async (dispatch:Dispatch) => {
@@ -19,20 +20,39 @@ export const docDetailPage = (docNum:any) => {
 export const add_task = (obj_t:any) => {
     return async (dispatch:Dispatch) => {
         postTasks_api(obj_t)
+        //dispatch(resetToHome())
+        window.location.href="/"
+    }
+}
+
+export const add_request = (obj_r:any,taskNum:any) => {
+    return async(dispatch:Dispatch)=>{
+        postRequest_api(obj_r,taskNum)
+        //dispatch(resetToHome())
+        window.location.href="/"
+        
+    }
+}
+
+export const resetToHome = (): HomeActions => {
+    return {
+        type:RESET_HOME
     }
 }
 
 export const submission = (taskNum:string,reqNum:string) => {
     return async (dispatch:Dispatch) => {
+        dispatch(loadingSubmission(true))
         let data = await submission_api(taskNum,reqNum)
         dispatch(setDocs(data))
     }
 }
 
-// export const selectTask = (val:string) => {{
-//         type: SELECT_TASK;
-//         val:val
-// }}
+export const loadingSubmission = (val:boolean): HomeActions => {
+    return{
+        type: LOADING_SUBMISSION,
+        val:val
+}}
 
 export const setDocs = (docs:any): HomeActions => {
     return {

@@ -14,7 +14,8 @@ export interface HomeState {
     subRes:any;
     task_select:number;
     searchResults:any;
-    sR_page:number
+    sR_page:number;
+    load_sub:boolean;
 }
 
 export const SET_TASKS = "SET_TASKS"
@@ -25,6 +26,8 @@ export const SET_DOCS = "SET_DOCS"
 export const DOC_DETAIL="DOC_DETAIL"
 export const ADD_REQUEST_CLICK="ADD_REQUEST_CLICK"
 export const TASK_SELECTED="TASK_SELECTED"
+export const RESET_HOME="RESET_HOME"
+export const LOADING_SUBMISSION="LOADING_SUBMISSION"
 
 export interface SetTasks extends Action {
     type: typeof SET_TASKS;
@@ -66,4 +69,22 @@ export interface TaskSelected extends Action {
     val:number
 }
 
-export type HomeActions = SetTasks | DecrementAction | AddTaskClick | SelectTask | SetDocs | DocDetail | AddRequestClick | TaskSelected;
+export interface ResetHome extends Action {
+    type: typeof RESET_HOME;
+}
+
+export interface LoadingSubmission extends Action {
+    type: typeof LOADING_SUBMISSION;
+    val: boolean
+}
+
+export type HomeActions = SetTasks 
+                        | DecrementAction 
+                        | AddTaskClick 
+                        | SelectTask 
+                        | SetDocs 
+                        | DocDetail 
+                        | AddRequestClick 
+                        | TaskSelected
+                        | ResetHome
+                        | LoadingSubmission;

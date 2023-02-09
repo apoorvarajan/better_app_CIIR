@@ -229,4 +229,13 @@
   .selected_item{
     background: #f0c1c1;
   }
+  .loading_sub{
+      /* margin: 2em; */
+      font-size: 2em;
+      /* width: 100%; */
+      color: #881c1c;
+      width: 100%;
+      text-align: center;
+      margin: 3em 0em;
+  }
   

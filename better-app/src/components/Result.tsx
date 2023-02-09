@@ -42,7 +42,7 @@ class Results extends React.Component<any,any>{
                 Show Doc Detail Page: {this.props.docNum}
             </div>
         }
-        const {tasks,doc_table, searchResults, sR_page}=this.props
+        const {tasks,searchResults,load_sub}=this.props
         const {low,up} = this.state
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
         if (urlParams.reqNum && urlParams.taskNum && tasks){
@@ -83,41 +83,44 @@ class Results extends React.Component<any,any>{
                                 </td>
                             </tr>
                         </table>
-                        <div className="sub_filters">
-                            <div className="filter-heading">
-                                Filters
-                            </div>
-                            <div className="dropdown">
-                                <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
-                                <div id="myDropdown" className="dropdown-content">
-                                    <a href="#allevents">All Events</a>
-                                    <a href="#ev1">Event 1</a>
-                                    <a href="#ev2">Event 2</a>
-                                    <a href="#ev3">Event 3</a>
-                                    <a href="#ev4">Event 4</a>
+                        {load_sub?<div className="loading_sub">Loading Submissions......</div>
+                        :<div>
+                            <div className="sub_filters">
+                                <div className="filter-heading">
+                                    Filters
+                                </div>
+                                <div className="dropdown">
+                                    <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
+                                    <div id="myDropdown" className="dropdown-content">
+                                        <a href="#allevents">All Events</a>
+                                        <a href="#ev1">Event 1</a>
+                                        <a href="#ev2">Event 2</a>
+                                        <a href="#ev3">Event 3</a>
+                                        <a href="#ev4">Event 4</a>
+                                    </div>
+                                </div>
+                                <div>
+                                    Contains: <input  /> in the event
+                                    {/* <button className="dropbtn"> Submit </button> */}
                                 </div>
                             </div>
-                            <div>
-                                Contains: <input  /> in the event
-                                {/* <button className="dropbtn"> Submit </button> */}
-                            </div>
-                        </div>
-                        <table className="doc_table">
-                            <tr className="task_table_head doc_table_row">
-                                <th className="th_cell">SN</th>
-                                <th className="th_cell">Document Id</th>
-                                <th className="th_cell">Snippet from document</th>
-                                <th></th>
-                            </tr>
-                            {searchResults && searchResults.hits && searchResults.hits.length>0 && searchResults.hits.slice(low,up).map((item:any,key:any)=>{
-                                return <tr className="doc_table_row">
-                                            <td className="doc_table_col"> {key+1 || "No."} </td>
-                                            <td className="doc_table_col">{item.docid}</td>
-                                            <td className="doc_table_col">{item.docText.slice(0,75)+"............."}</td>
-                                            <td className="details_button" onClick={()=> this.getDocdetails(item.docNum,key)}> Details </td>
-                                    </tr>
-                            })}
-                        </table>
+                            <table className="doc_table">
+                                <tr className="task_table_head doc_table_row">
+                                    <th className="th_cell">SN</th>
+                                    <th className="th_cell">Document Id</th>
+                                    <th className="th_cell">Snippet from document</th>
+                                    <th></th>
+                                </tr>
+                                {searchResults && searchResults.hits && searchResults.hits.length>0 && searchResults.hits.slice(low,up).map((item:any,key:any)=>{
+                                    return <tr className="doc_table_row">
+                                                <td className="doc_table_col"> {key+1 || "No."} </td>
+                                                <td className="doc_table_col">{item.docid}</td>
+                                                <td className="doc_table_col">{item.docText.slice(0,75)+"............."}</td>
+                                                <td className="details_button" onClick={()=> this.getDocdetails(item.docNum,key)}> Details </td>
+                                        </tr>
+                                })}
+                            </table>
+                        </div>}
                     </div>
         }
         else{
