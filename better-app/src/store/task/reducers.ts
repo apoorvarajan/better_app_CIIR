@@ -10,7 +10,7 @@ const initialState: HomeState = {
     docs:null,
     doc_table:[],
     show_doc_detail:false,
-    docNum:null,
+    docitem:null,
     subRes:null,
     task_select:-1,
     searchResults:null,
@@ -34,7 +34,7 @@ const reducer = (
         case SELECT_TASK:
             return {...state, task_click:action.val}
         case DOC_DETAIL:
-            return {...state, show_doc_detail:true,docNum:action.docNum}
+            return {...state, show_doc_detail:true,docitem:action.docitem}
         case SET_DOCS:
             return {...state, subRes:action.docs, searchResults:action.docs.searchResults, sR_page:10,  load_sub:false}
         case TASK_SELECTED:

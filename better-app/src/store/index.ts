@@ -13,7 +13,7 @@ export interface State {
     docs:any;
     doc_table:any;
     show_doc_detail:boolean;
-    docNum:any;
+    docitem:any;
     subRes:any;
     task_select:number;
     searchResults:any;

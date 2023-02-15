@@ -10,10 +10,10 @@ export const  getTasks = () => {
     }
 }
 
-export const docDetailPage = (docNum:any) => {
+export const docDetailPage = (docitem:any) => {
     return {
         type:DOC_DETAIL,
-        docNum
+        docitem
     }
 }
 

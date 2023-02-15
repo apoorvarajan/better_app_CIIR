@@ -1,5 +1,6 @@
 import React from 'react'
 import './css/home.css'
+import Details from './Details'
 class Results extends React.Component<any,any>{
     constructor(props:any){
         super(props);
@@ -37,19 +38,17 @@ class Results extends React.Component<any,any>{
         (document.getElementById("myDropdown") as HTMLInputElement).classList.toggle("show");
       }
     render(){
+        const {tasks,searchResults,load_sub,subRes,docitem}=this.props
+        let today_dt = new Date()
+        let date = today_dt.toDateString()
         if (this.props.show_doc_detail){
-            return <div>
-                Show Doc Detail Page: {this.props.docNum}
-            </div>
+            return <Details subRes={subRes} datestring={date} docitem={docitem}/>
         }
-        const {tasks,searchResults,load_sub}=this.props
         const {low,up} = this.state
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
         if (urlParams.reqNum && urlParams.taskNum && tasks){
             let sel_task= tasks.filter((item:any)=>{return item.taskNum === urlParams.taskNum})[0]
             let sel_req = sel_task && sel_task.requests.filter((item:any)=>{return item.reqNum === urlParams.reqNum})[0]
-            let today_dt = new Date()
-            let date = today_dt.toDateString()
             return <div> 
                         <div className="header">
                             University of Massachusetts Amherst
@@ -116,7 +115,7 @@ class Results extends React.Component<any,any>{
                                                 <td className="doc_table_col"> {key+1 || "No."} </td>
                                                 <td className="doc_table_col">{item.docid}</td>
                                                 <td className="doc_table_col">{item.docText.slice(0,75)+"............."}</td>
-                                                <td className="details_button" onClick={()=> this.getDocdetails(item.docNum,key)}> Details </td>
+                                                <td className="details_button" onClick={()=> this.getDocdetails(item,key)}> Details </td>
                                         </tr>
                                 })}
                             </table>

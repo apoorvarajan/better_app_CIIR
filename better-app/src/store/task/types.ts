@@ -10,7 +10,7 @@ export interface HomeState {
     docs:any;
     doc_table:any;
     show_doc_detail:boolean;
-    docNum:any;
+    docitem:any;
     subRes:any;
     task_select:number;
     searchResults:any;
@@ -60,7 +60,7 @@ export interface SelectTask extends Action {
 
 export interface DocDetail extends Action {
     type: typeof DOC_DETAIL;
-    docNum: any
+    docitem: any
 }
 
 

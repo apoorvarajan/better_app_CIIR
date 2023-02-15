@@ -238,4 +238,50 @@
       text-align: center;
       margin: 3em 0em;
   }
+  .highlight-filter{
+    margin: 3em;
+    font-size: 1.3em;
+  }
+  .highlight-head{
+    font-weight: bold;
+    margin: 0em 0em 1em 0em;
+  }
+  .highlight-items{
+    border: 0.1em solid #881c1c;
+    padding: 1em;
+    border-radius: 0.3em;
+    margin: 0.2em 0em;
+    
+  }
+  .highlight-item{
+    margin: 1em 0em;
+  }
+  .docText{
+    margin: 3em;
+    font-size: 1.2em;
+  }
+  .see_events_button{
+    margin: auto;
+    background: #881c1c;
+    border-radius: 0.3em;
+    color: white;
+    font-weight: bold;
+    padding: 0.8em;
+    font-size: 1.2em;
+    width: 20%;
+    text-align: center;
+  }
+  .prev-next-buttons{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2em 0em;
+    font-size: 1.1em;
+  }
+  .details-page-button{
+    border: 0.1em solid #881c1c;
+    color: #881c1c;
+    font-weight: bold;
+    border-radius: 0.3em;
+    padding: 0.3em 0.5em;
+  }
   

@@ -17,7 +17,7 @@ const mapStateToProps = (state: HomeState) => ({
     docs:state.docs,
     doc_table:state.doc_table,
     show_doc_detail:state.show_doc_detail,
-    docNum:state.docNum,
+    docitem:state.docitem,
     subRes:state.subRes,
     searchResults:state.searchResults,
     sR_page:state.sR_page,
