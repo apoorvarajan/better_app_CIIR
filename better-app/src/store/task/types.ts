@@ -2,8 +2,7 @@ import { Action } from "redux";
 
 export interface HomeState {
     tasks: any;
-    c:number;
-    task_set:boolean;
+    loaderHome:boolean;
     add_task_screen:boolean;
     add_request_screen:boolean;
     task_click:string;
@@ -14,8 +13,9 @@ export interface HomeState {
     subRes:any;
     task_select:number;
     searchResults:any;
-    sR_page:number;
     load_sub:boolean;
+    doc_key:any;
+    showEvent:boolean;
 }
 
 export const SET_TASKS = "SET_TASKS"
@@ -28,6 +28,9 @@ export const ADD_REQUEST_CLICK="ADD_REQUEST_CLICK"
 export const TASK_SELECTED="TASK_SELECTED"
 export const RESET_HOME="RESET_HOME"
 export const LOADING_SUBMISSION="LOADING_SUBMISSION"
+export const LOADER_HOME="LOADER_HOME"
+export const SHOW_EVENT = "SHOW_EVENT"
+export const GOBACK_DETAILS="GOBACK_DETAILS"
 
 export interface SetTasks extends Action {
     type: typeof SET_TASKS;
@@ -60,7 +63,8 @@ export interface SelectTask extends Action {
 
 export interface DocDetail extends Action {
     type: typeof DOC_DETAIL;
-    docitem: any
+    docitem: any;
+    key:any;
 }
 
 
@@ -78,6 +82,20 @@ export interface LoadingSubmission extends Action {
     val: boolean
 }
 
+export interface LoaderHome extends Action {
+    type: typeof LOADER_HOME;
+    val:boolean
+}
+
+export interface showEventPage extends Action {
+    type: typeof SHOW_EVENT;
+    val: boolean
+}
+
+export interface GoBackDetails extends Action {
+    type: typeof GOBACK_DETAILS;
+}
+
 export type HomeActions = SetTasks 
                         | DecrementAction 
                         | AddTaskClick 
@@ -87,4 +105,7 @@ export type HomeActions = SetTasks
                         | AddRequestClick 
                         | TaskSelected
                         | ResetHome
-                        | LoadingSubmission;
+                        | LoadingSubmission
+                        | LoaderHome
+                        | showEventPage
+                        | GoBackDetails;

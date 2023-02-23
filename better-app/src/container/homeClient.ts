@@ -14,7 +14,7 @@ import HomeComponent from '../components/Home'
   
 const mapStateToProps = (state: HomeState) => ({
     tasks: state.tasks,
-    c:state.c,
+    loaderHome:state.loaderHome,
     add_task_screen:state.add_task_screen,
     add_request_screen:state.add_request_screen,
     task_select:state.task_select

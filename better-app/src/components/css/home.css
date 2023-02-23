@@ -284,4 +284,33 @@
     border-radius: 0.3em;
     padding: 0.3em 0.5em;
   }
+  .event_table{
+    width: 75%;
+    margin: auto;
+    text-align: center;
+  }
+  .event_th_cell{
+    padding: 0.5em 1em;
+  }
+  .event-bottom{
+    margin: 3em;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .event-bottom-button{
+    background: #881c1c;
+    color: white;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    border-radius: 0.3em;
+    font-size: 1.1em;
+  }
+  .light{
+    background: #fdf5f5;
+  }
+  .dark{
+    background: #fae4e4;
+  }
   

@@ -32,17 +32,17 @@ class Results extends React.Component<any,any>{
         })
     }
     getDocdetails(docNum:any,key:any){
-        this.props.docDetailPage(docNum)
+        this.props.docDetailPage(docNum,key)
     }
     filterFunction(){
         (document.getElementById("myDropdown") as HTMLInputElement).classList.toggle("show");
       }
     render(){
-        const {tasks,searchResults,load_sub,subRes,docitem}=this.props
+        const {tasks,searchResults,load_sub,subRes,docitem, doc_key, showEventsPage, showEvent,goBackDetails}=this.props
         let today_dt = new Date()
         let date = today_dt.toDateString()
         if (this.props.show_doc_detail){
-            return <Details subRes={subRes} datestring={date} docitem={docitem}/>
+            return <Details goBackDetails={goBackDetails} showEvent={showEvent} showEventsPage={showEventsPage} getDocdetails={this.getDocdetails.bind(this)} searchResults={searchResults} subRes={subRes} datestring={date} docitem={docitem} doc_key={doc_key}/>
         }
         const {low,up} = this.state
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())

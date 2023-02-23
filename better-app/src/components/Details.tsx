@@ -1,7 +1,17 @@
 import React from 'react'
+import EventPage from './Event'
 class Details extends React.Component<any,any>{
     constructor(props:any){
         super(props)
+    }
+    np_click(val:boolean){
+        let {getDocdetails,searchResults, doc_key}=this.props;
+        if(val){
+            getDocdetails(searchResults.hits[doc_key+1],doc_key+1)
+        }
+        else{
+            getDocdetails(searchResults.hits[doc_key-1],doc_key-1)
+        }
     }
     render(){
         let {props}=this
@@ -50,10 +60,12 @@ class Details extends React.Component<any,any>{
                                 Rank:
                             </td>
                             <td className="val1">
-                                {"?"}
+                                {props.doc_key}
                             </td>
                         </tr>
                     </table>
+                    {props.showEvent ? <EventPage doc_key={props.doc_key} events={props.docitem.events} showEventsPage={props.showEventsPage}/>
+                    :<div>
                     <div className="highlight-filter">
                         <div className="highlight-head">
                             HIGHLIGHT:
@@ -86,17 +98,18 @@ class Details extends React.Component<any,any>{
                     <div className="docText">
                         {props.docitem.docText}
                     </div>
-                    <div className="see_events_button">
+                    <div className="see_events_button" onClick={()=>props.showEventsPage(true)}>
                         See Events in the Document
                     </div>
                     <div className="prev-next-buttons">
-                        <div className="details-page-button">
+                        {props.doc_key >0 && <div className="details-page-button" onClick={()=>this.np_click(false)}>
                             {"< Previous doc"}
-                        </div>
-                        <div className="details-page-button">
+                        </div>}
+                        {props.doc_key<props.searchResults.hits.length && <div className="details-page-button" onClick={()=>this.np_click(true)}>
                             {"Next doc >"}
-                        </div>
+                        </div>}
                     </div>
+                    </div>}
                 </div>
     }
 }

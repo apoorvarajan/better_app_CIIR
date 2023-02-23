@@ -6,13 +6,14 @@ import {
     decrementCounter,
     add_task,
     submission,
-    docDetailPage
+    docDetailPage,
+    showEventsPage,
+    goBackDetails
   } from "../store/task";
 import ResultComponent from '../components/Result'
   
 const mapStateToProps = (state: HomeState) => ({
     tasks: state.tasks,
-    c:state.c,
     add_task_screen:state.add_task_screen,
     docs:state.docs,
     doc_table:state.doc_table,
@@ -20,8 +21,9 @@ const mapStateToProps = (state: HomeState) => ({
     docitem:state.docitem,
     subRes:state.subRes,
     searchResults:state.searchResults,
-    sR_page:state.sR_page,
-    load_sub:state.load_sub
+    load_sub:state.load_sub,
+    doc_key:state.doc_key,
+    showEvent:state.showEvent
   });
   
   const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -30,7 +32,9 @@ const mapStateToProps = (state: HomeState) => ({
     decrementCounter: () => dispatch(decrementCounter()),
     add_task:(t_obj:any)=>add_task(t_obj)(dispatch),
     submission:(taskNum:string,reqNum:string)=>submission(taskNum,reqNum)(dispatch),
-    docDetailPage: (docNum:any)=> dispatch(docDetailPage(docNum))
+    docDetailPage: (docNum:any,key:any)=> dispatch(docDetailPage(docNum,key)),
+    showEventsPage: (val:boolean) => dispatch(showEventsPage(val)),
+    goBackDetails: () => dispatch(goBackDetails())
 
   });
   

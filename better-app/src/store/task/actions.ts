@@ -1,7 +1,15 @@
-import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SET_DOCS, DOC_DETAIL, ADD_REQUEST_CLICK, TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION } from "./types";
+import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SET_DOCS, DOC_DETAIL, ADD_REQUEST_CLICK, 
+    TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION, LOADER_HOME, SHOW_EVENT, GOBACK_DETAILS } from "./types";
 import {Dispatch} from 'redux'
 import {getTasks_api,postTasks_api, submission_api,postRequest_api} from '../../controllers/apicalls'
 import Home from "../../components/Home";
+
+export const loaderHome = (val:boolean) =>{
+    return {
+        type:LOADER_HOME,
+        val
+    }
+}
 
 export const  getTasks = () => {
     return async (dispatch:Dispatch) => {
@@ -10,16 +18,17 @@ export const  getTasks = () => {
     }
 }
 
-export const docDetailPage = (docitem:any) => {
+export const docDetailPage = (docitem:any,key:any) => {
     return {
         type:DOC_DETAIL,
-        docitem
+        docitem,
+        key
     }
 }
 
 export const add_task = (obj_t:any) => {
     return async (dispatch:Dispatch) => {
-        postTasks_api(obj_t)
+        await postTasks_api(obj_t)
         //dispatch(resetToHome())
         window.location.href="/"
     }
@@ -27,7 +36,7 @@ export const add_task = (obj_t:any) => {
 
 export const add_request = (obj_r:any,taskNum:any) => {
     return async(dispatch:Dispatch)=>{
-        postRequest_api(obj_r,taskNum)
+        await postRequest_api(obj_r,taskNum)
         //dispatch(resetToHome())
         window.location.href="/"
         
@@ -85,4 +94,13 @@ export const addRequest_click = (val:boolean): HomeActions => ({
 export const task_selected = (val:number): HomeActions => ({
     type:TASK_SELECTED,
     val
+})
+
+export const showEventsPage = (val:boolean): HomeActions => ({
+    type:SHOW_EVENT,
+    val
+})
+
+export const goBackDetails=():HomeActions => ({
+    type:GOBACK_DETAILS
 })

@@ -5,8 +5,7 @@ import reducers from "./task/reducers";
 
 export interface State {
     tasks: any;
-    c: number;
-    task_set:boolean;
+    loaderHome:boolean;
     add_task_screen:boolean;
     add_request_screen: false,
     task_click:string;
@@ -17,8 +16,9 @@ export interface State {
     subRes:any;
     task_select:number;
     searchResults:any;
-    sR_page:number;
-    load_sub:boolean
+    load_sub:boolean;
+    doc_key:any;
+    showEvent:boolean;
 }
 
 const composeEnhancers =

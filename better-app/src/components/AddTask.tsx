@@ -5,6 +5,7 @@ const add_task_click=(e:any,props:any)=>{
     props.add_task(at_obj)
 }
 export const AddTask = (props:any) =>{
+    
     return <div className="addtask_container">
     <div className="addtask_sec">
         <div className="new_task_heading">
