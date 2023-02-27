@@ -17,27 +17,25 @@ class Details extends React.Component<any,any>{
         (document.getElementById("myDropdownDetails") as HTMLInputElement).classList.toggle("show");
       }
       eventfilter(event:any){
-        // const {searchResults}=this.props
-        // let result=[]
-        // let pu=10
-        // if (event=="all"){
-        //     result = searchResults.hits
-        // }
-        // else{
-        //     result=searchResults.hits.filter((item:any)=> item.events.some((ev:any)=>{return ev.eventType == event}))
-        // }
-        // if(result.length>10){
-        //     pu=10
-        // }
-        // else{
-        //     pu=result.length
-        // }
-        (document.getElementById("myDropdown") as HTMLInputElement).classList.remove("show");
-        // this.setState({
-        //     resultingList:result,
-        //     up:pu,
-        //     low:0
-        // })
+        const {docitem}=this.props
+        let result=[]
+        if (event=="all"){
+            result = docitem.events.map((item:any)=> item.anchorSpan.string)
+        }
+        else{
+            result=docitem.events.map((item:any)=> item.eventType == event && item.anchorSpan.string)
+        }
+        (document.getElementById("myDropdownDetails") as HTMLInputElement).classList.remove("show");
+        let inputText = document.getElementById("detailsDocText")
+        let innerHTML = inputText?.innerHTML
+        for(let i=0;i<result.length;i++){
+            let index = innerHTML?.indexOf(result[i])
+            if(index && index>=0 && inputText){
+                innerHTML = innerHTML?.substring(0,index) + "<span class='highlight_event'>" + innerHTML?.substring(index,index+result[i].length) + "</span>" + innerHTML?.substring(index + result[i].length);
+                inputText.innerHTML = innerHTML;
+            }
+        }
+        
     }
     taskterms(e:any){
         if(e.target.checked){

@@ -348,3 +348,6 @@
   .highlight_request{
     background: lightcoral;
   }
+  .highlight_event{
+    background: lightgrey;
+  }
