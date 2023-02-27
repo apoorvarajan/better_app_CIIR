@@ -13,6 +13,32 @@ class Details extends React.Component<any,any>{
             getDocdetails(searchResults.hits[doc_key-1],doc_key-1)
         }
     }
+    filterFunction(){
+        (document.getElementById("myDropdownDetails") as HTMLInputElement).classList.toggle("show");
+      }
+      eventfilter(event:any){
+        // const {searchResults}=this.props
+        // let result=[]
+        // let pu=10
+        // if (event=="all"){
+        //     result = searchResults.hits
+        // }
+        // else{
+        //     result=searchResults.hits.filter((item:any)=> item.events.some((ev:any)=>{return ev.eventType == event}))
+        // }
+        // if(result.length>10){
+        //     pu=10
+        // }
+        // else{
+        //     pu=result.length
+        // }
+        (document.getElementById("myDropdown") as HTMLInputElement).classList.remove("show");
+        // this.setState({
+        //     resultingList:result,
+        //     up:pu,
+        //     low:0
+        // })
+    }
     render(){
         let {props}=this
         return <div> 
@@ -80,13 +106,13 @@ class Details extends React.Component<any,any>{
                                 <label>Request terms</label>
                             </div>
                             <div className="dropdown highlight-item">
-                                <button onClick={()=>{}} className="dropbtn">Event Type</button>
-                                    <div id="myDropdown" className="dropdown-content">
+                                <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
+                                    <div id="myDropdownDetails" className="dropdown-content">
                                         <a href="#allevents">All Events</a>
-                                        <a href="#ev1">Event 1</a>
-                                        <a href="#ev2">Event 2</a>
-                                        <a href="#ev3">Event 3</a>
-                                        <a href="#ev4">Event 4</a>
+                                        <a onClick={()=>this.eventfilter("all")}>All Events</a>
+                                            {props.event_types && props.event_types.map((item:any)=>{
+                                                return <a onClick={()=>this.eventfilter(item)}>{item}</a>
+                                        })}
                                     </div>
                             </div>
                         </div>
