@@ -55,7 +55,8 @@ class Results extends React.Component<any,any>{
         (document.getElementById("myDropdown") as HTMLInputElement).classList.remove("show");
         this.setState({
             resultingList:result,
-            up:pu
+            up:pu,
+            low:0
         })
     }
     np_click(val:boolean){
@@ -83,6 +84,23 @@ class Results extends React.Component<any,any>{
         this.setState({
             up:pu,
             low:ol
+        })
+    }
+    containsFilter(e:any){
+        let {searchResults}=this.props
+        let result=[]
+        let pu=0
+        result=searchResults.hits.filter((item:any)=> item.docText.toLowerCase().includes(e.toLowerCase()) || item.translatedDocText.toLowerCase().includes(e.toLowerCase()))
+        if(result.length>10){
+            pu=10
+        }
+        else{
+            pu=result.length
+        }
+        this.setState({
+            resultingList:result,
+            up:pu,
+            low:0
         })
     }
     render(){
@@ -140,22 +158,24 @@ class Results extends React.Component<any,any>{
                                 <div className="filter-heading">
                                     Filters
                                 </div>
-                                <div className="dropdown">
-                                    <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
-                                    <div id="myDropdown" className="dropdown-content">
-                                        <a>All Events</a>
-                                        {event_types && event_types.map((item:any)=>{
-                                            return <a onClick={()=>this.eventfilter(item)}>{item}</a>
-                                        })}
+                                <div className="result-filter-wrap">
+                                    <div className="dropdown">
+                                        <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
+                                        <div id="myDropdown" className="dropdown-content">
+                                            <a>All Events</a>
+                                            {event_types && event_types.map((item:any)=>{
+                                                return <a onClick={()=>this.eventfilter(item)}>{item}</a>
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    Contains: <input  /> in the event
-                                    {/* <button className="dropbtn"> Submit </button> */}
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="translate" onChange={(e)=> translateEnglish(e.target.checked)} checked={translate_english}/>
-                                    <label>Translate to english</label>
+                                    <div>
+                                        Contains: <input  onChange={(e)=>this.containsFilter(e.target.value)}/> in the event
+                                        {/* <button className="dropbtn"> Submit </button> */}
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="translate" onChange={(e)=> translateEnglish(e.target.checked)} checked={translate_english}/>
+                                        <label>Translate to english</label>
+                                    </div>
                                 </div>
                             </div>
                             <table className="doc_table">

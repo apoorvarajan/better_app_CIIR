@@ -320,4 +320,9 @@
     padding-bottom: 3em;
     border-bottom: 0.2em solid #881c1c;
   }
+  .result-filter-wrap{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3em;
+  }
   
