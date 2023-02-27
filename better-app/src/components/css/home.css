@@ -342,4 +342,9 @@
   .detals-width{
     width: 30%;
   }
-  
+  .highlight_task{
+    background: lightblue;
+  }
+  .highlight_request{
+    background: lightcoral;
+  }

@@ -39,12 +39,50 @@ class Details extends React.Component<any,any>{
         //     low:0
         // })
     }
-    taskterms(){
-        let {subRes}=this.props
-        
+    taskterms(e:any){
+        if(e.target.checked){
+            let {subRes}=this.props
+            let taskterms = subRes.taskStmt.split(" ")
+            taskterms = taskterms.map((item:any)=> item!=""?" "+item+" ":null)
+            let inputText = document.getElementById("detailsDocText")
+            let innerHTML = inputText?.innerHTML
+            for(let i=0;i<taskterms.length;i++){
+                let index = innerHTML?.indexOf(taskterms[i])
+                if(index && index>=0 && inputText){
+                    innerHTML = innerHTML?.substring(0,index) + "<span class='highlight_task'>" + innerHTML?.substring(index,index+taskterms[i].length) + "</span>" + innerHTML?.substring(index + taskterms[i].length);
+                    inputText.innerHTML = innerHTML;
+                }
+            }
+        }
+        else{
+            let high_classes = document.getElementsByClassName("highlight_task")
+            while(high_classes.length>0){
+                high_classes[0].className=""
+            }
+        }
     }
-    requestterms(){
+    requestterms(e:any){
         let {subRes}=this.props
+        if(e.target.checked){
+            let {subRes}=this.props
+            let reqterms = subRes.reqText.split(" ")
+            reqterms = reqterms.map((item:any)=> item!="" ? " "+item+" ":null)
+            let inputText = document.getElementById("detailsDocText")
+            let innerHTML = inputText?.innerHTML
+            for(let i=0;i<reqterms.length;i++){
+                let index = innerHTML?.indexOf(reqterms[i])
+                if(index && index>=0 && inputText){
+                    innerHTML = innerHTML?.substring(0,index) + "<span class='highlight_request'>" + innerHTML?.substring(index,index+reqterms[i].length) + "</span>" + innerHTML?.substring(index + reqterms[i].length);
+                    inputText.innerHTML = innerHTML;
+                }
+            }
+        }
+        else{
+            let high_classes = document.getElementsByClassName("highlight_request")
+            while(high_classes.length>0){
+                high_classes[0].className=""
+            }
+        }
     }
     render(){
         let {props}=this
@@ -111,11 +149,11 @@ class Details extends React.Component<any,any>{
                         </div>
                         <div className="highlight-items">
                             <div className="highlight-item">
-                                <input type="checkbox" name="taskterms" onChange={()=>this.taskterms()}/>
+                                <input type="checkbox" name="taskterms" onChange={(e:any)=>this.taskterms(e)}/>
                                 <label>Task terms</label>
                             </div>
                             <div className="highlight-item">
-                                <input type="checkbox" name="requestterms" onChange={()=>this.requestterms()}/>
+                                <input type="checkbox" name="requestterms" onChange={(e:any)=>this.requestterms(e)}/>
                                 <label>Request terms</label>
                             </div>
                             <div className="dropdown highlight-item">
@@ -133,7 +171,7 @@ class Details extends React.Component<any,any>{
                         <label>Translate to english</label>
                     </div>
                     </div>
-                    <div className="docText">
+                    <div className="docText" id="detailsDocText">
                         {props.translate_english? props.docitem.translatedDocText : props.docitem.docText}
                     </div>
                     <div className="details_bottom_buttons">
