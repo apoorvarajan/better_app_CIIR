@@ -60,7 +60,7 @@ class Details extends React.Component<any,any>{
                                 Rank:
                             </td>
                             <td className="val1">
-                                {props.doc_key}
+                                {props.docitem.Rank}
                             </td>
                         </tr>
                     </table>
@@ -98,8 +98,13 @@ class Details extends React.Component<any,any>{
                     <div className="docText">
                         {props.translate_english? props.docitem.translatedDocText : props.docitem.docText}
                     </div>
-                    <div className="see_events_button" onClick={()=>props.showEventsPage(true)}>
-                        See Events in the Document
+                    <div className="details_bottom_buttons">
+                        <div className="see_events_button" onClick={()=> props.goBackDetails()}>
+                            Submissions Page
+                        </div>
+                        <div className="see_events_button" onClick={()=>props.showEventsPage(true)}>
+                            See Events in the Document
+                        </div>
                     </div>
                     <div className="prev-next-buttons">
                         {props.doc_key >0 && <div className="details-page-button" onClick={()=>this.np_click(false)}>

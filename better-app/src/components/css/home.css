@@ -261,7 +261,7 @@
     font-size: 1.2em;
   }
   .see_events_button{
-    margin: auto;
+    /*margin: auto;*/
     background: #881c1c;
     border-radius: 0.3em;
     color: white;
@@ -273,7 +273,7 @@
   }
   .prev-next-buttons{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin: 2em 0em;
     font-size: 1.1em;
   }
@@ -283,6 +283,7 @@
     font-weight: bold;
     border-radius: 0.3em;
     padding: 0.3em 0.5em;
+    margin: 0em 2em;
   }
   .event_table{
     width: 75%;
@@ -312,5 +313,11 @@
   }
   .dark{
     background: #fae4e4;
+  }
+  .details_bottom_buttons{
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 3em;
+    border-bottom: 0.2em solid #881c1c;
   }
   
