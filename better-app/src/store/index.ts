@@ -20,6 +20,7 @@ export interface State {
     doc_key:any;
     showEvent:boolean;
     event_types:any;
+    translate_english:boolean;
 }
 
 const composeEnhancers =

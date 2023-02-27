@@ -1,5 +1,5 @@
 import { HomeState, HomeActions, SET_TASKS, ADD_TASK_CLICK, SELECT_TASK, SET_DOCS, DOC_DETAIL, ADD_REQUEST_CLICK, 
-    TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION, LOADER_HOME, SHOW_EVENT, GOBACK_DETAILS } from "./types";
+    TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION, LOADER_HOME, SHOW_EVENT, GOBACK_DETAILS, TRANSLATE_ENGLISH } from "./types";
 
 const initialState: HomeState = {
     tasks:[],
@@ -17,7 +17,8 @@ const initialState: HomeState = {
     load_sub:false,
     doc_key:null,
     showEvent:false,
-    event_types:null
+    event_types:null,
+    translate_english:false
 };
 
 const reducer = (
@@ -62,6 +63,8 @@ const reducer = (
              return { ...state, showEvent:action.val}
         case GOBACK_DETAILS:
             return { ...state, show_doc_detail:false,docitem:null,doc_key:null}
+        case TRANSLATE_ENGLISH:
+            return { ...state, translate_english:action.val}
         default:
             return state;
     }

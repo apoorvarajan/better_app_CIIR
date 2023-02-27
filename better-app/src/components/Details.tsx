@@ -91,12 +91,12 @@ class Details extends React.Component<any,any>{
                             </div>
                         </div>
                         <div className="highlight-items">
-                        <input type="checkbox" name="translate"/>
+                        <input type="checkbox" name="translate" checked={props.translate_english} onChange={(e)=> props.translateEnglish(e.target.checked)}/>
                         <label>Translate to english</label>
                     </div>
                     </div>
                     <div className="docText">
-                        {props.docitem.docText}
+                        {props.translate_english? props.docitem.translatedDocText : props.docitem.docText}
                     </div>
                     <div className="see_events_button" onClick={()=>props.showEventsPage(true)}>
                         See Events in the Document

@@ -17,6 +17,7 @@ export interface HomeState {
     doc_key:any;
     showEvent:boolean;
     event_types:any;
+    translate_english:boolean;
 }
 
 export const SET_TASKS = "SET_TASKS"
@@ -32,6 +33,7 @@ export const LOADING_SUBMISSION="LOADING_SUBMISSION"
 export const LOADER_HOME="LOADER_HOME"
 export const SHOW_EVENT = "SHOW_EVENT"
 export const GOBACK_DETAILS="GOBACK_DETAILS"
+export const TRANSLATE_ENGLISH="TRANSLATE_ENGLISH"
 
 export interface SetTasks extends Action {
     type: typeof SET_TASKS;
@@ -97,6 +99,11 @@ export interface GoBackDetails extends Action {
     type: typeof GOBACK_DETAILS;
 }
 
+export interface TranslateEnglish  extends Action {
+    type: typeof TRANSLATE_ENGLISH;
+    val:boolean
+}
+
 export type HomeActions = SetTasks 
                         | DecrementAction 
                         | AddTaskClick 
@@ -109,4 +116,5 @@ export type HomeActions = SetTasks
                         | LoadingSubmission
                         | LoaderHome
                         | showEventPage
-                        | GoBackDetails;
+                        | GoBackDetails
+                        | TranslateEnglish;

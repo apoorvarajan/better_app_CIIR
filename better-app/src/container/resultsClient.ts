@@ -8,7 +8,8 @@ import {
     submission,
     docDetailPage,
     showEventsPage,
-    goBackDetails
+    goBackDetails,
+    translateEnglish
   } from "../store/task";
 import ResultComponent from '../components/Result'
   
@@ -24,7 +25,8 @@ const mapStateToProps = (state: HomeState) => ({
     load_sub:state.load_sub,
     doc_key:state.doc_key,
     showEvent:state.showEvent,
-    event_types:state.event_types
+    event_types:state.event_types,
+    translate_english:state.translate_english
   });
   
   const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -35,7 +37,8 @@ const mapStateToProps = (state: HomeState) => ({
     submission:(taskNum:string,reqNum:string)=>submission(taskNum,reqNum)(dispatch),
     docDetailPage: (docNum:any,key:any)=> dispatch(docDetailPage(docNum,key)),
     showEventsPage: (val:boolean) => dispatch(showEventsPage(val)),
-    goBackDetails: () => dispatch(goBackDetails())
+    goBackDetails: () => dispatch(goBackDetails()),
+    translateEnglish: (val:boolean) => dispatch(translateEnglish(val))
 
   });
   

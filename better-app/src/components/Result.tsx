@@ -1,4 +1,5 @@
 import React from 'react'
+import { translateEnglish } from '../store/task';
 import './css/home.css'
 import Details from './Details'
 class Results extends React.Component<any,any>{
@@ -85,11 +86,15 @@ class Results extends React.Component<any,any>{
         })
     }
     render(){
-        const {tasks,searchResults,load_sub,subRes,docitem, doc_key, showEventsPage, showEvent,goBackDetails,event_types}=this.props
+        const {tasks,searchResults,load_sub,subRes,docitem, doc_key, showEventsPage, 
+            showEvent,goBackDetails,event_types, translateEnglish, translate_english}=this.props
         let today_dt = new Date()
         let date = today_dt.toDateString()
         if (this.props.show_doc_detail){
-            return <Details goBackDetails={goBackDetails} showEvent={showEvent} showEventsPage={showEventsPage} getDocdetails={this.getDocdetails.bind(this)} searchResults={searchResults} subRes={subRes} datestring={date} docitem={docitem} doc_key={doc_key}/>
+            return <Details translate_english={translate_english} goBackDetails={goBackDetails} showEvent={showEvent} 
+            showEventsPage={showEventsPage} getDocdetails={this.getDocdetails.bind(this)} searchResults={searchResults} 
+            subRes={subRes} datestring={date} docitem={docitem} doc_key={doc_key}
+            translateEnglish={translateEnglish}/>
         }
         const {low,up,resultingList} = this.state
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
@@ -148,6 +153,10 @@ class Results extends React.Component<any,any>{
                                     Contains: <input  /> in the event
                                     {/* <button className="dropbtn"> Submit </button> */}
                                 </div>
+                                <div>
+                                    <input type="checkbox" name="translate" onChange={(e)=> translateEnglish(e.target.checked)} checked={translate_english}/>
+                                    <label>Translate to english</label>
+                                </div>
                             </div>
                             <table className="doc_table">
                                 <tr className="task_table_head doc_table_row">
@@ -160,7 +169,7 @@ class Results extends React.Component<any,any>{
                                     return <tr className="doc_table_row">
                                                 <td className="doc_table_col"> {item.Rank} </td>
                                                 <td className="doc_table_col">{item.docid}</td>
-                                                <td className="doc_table_col">{item.docText.slice(0,75)+"............."}</td>
+                                                <td className="doc_table_col">{translate_english? item.translatedDocText.slice(0,75)+"............." : item.docText.slice(0,75)+"............."}</td>
                                                 <td className="details_button" onClick={()=> this.getDocdetails(item,key)}> Details </td>
                                         </tr>
                                 })}
