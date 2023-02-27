@@ -41,6 +41,12 @@ class Details extends React.Component<any,any>{
     }
     render(){
         let {props}=this
+        let event_list: any = []
+        for(let j=0; j<props.docitem.events.length;j++){
+            if(!event_list.includes(props.docitem.events[j].eventType)){
+                event_list.push(props.docitem.events[j].eventType)
+            }
+        }
         return <div> 
                     <div className="header">
                         University of Massachusetts Amherst
@@ -107,9 +113,9 @@ class Details extends React.Component<any,any>{
                             </div>
                             <div className="dropdown highlight-item">
                                 <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
-                                    <div id="myDropdownDetails" className="dropdown-content">
+                                    <div id="myDropdownDetails" className="dropdown-content details-width">
                                         <a onClick={()=>this.eventfilter("all")}>All Events</a>
-                                            {props.event_types && props.event_types.map((item:any)=>{
+                                            {event_list && event_list.map((item:any)=>{
                                                 return <a onClick={()=>this.eventfilter(item)}>{item}</a>
                                         })}
                                     </div>

@@ -117,7 +117,7 @@ class Results extends React.Component<any,any>{
             return <Details translate_english={translate_english} goBackDetails={goBackDetails} showEvent={showEvent} 
             showEventsPage={showEventsPage} getDocdetails={this.getDocdetails.bind(this)} searchResults={searchResults} 
             subRes={subRes} datestring={date} docitem={docitem} doc_key={doc_key}
-            translateEnglish={translateEnglish} event_types={event_types}/>
+            translateEnglish={translateEnglish}/>
         }
         const {low,up,resultingList} = this.state
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
