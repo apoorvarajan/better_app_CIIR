@@ -17,6 +17,10 @@ class Details extends React.Component<any,any>{
         (document.getElementById("myDropdownDetails") as HTMLInputElement).classList.toggle("show");
       }
       eventfilter(event:any){
+        let high_classes = document.getElementsByClassName("highlight_event")
+        while(high_classes.length>0){
+            high_classes[0].className=""
+        }
         const {docitem}=this.props
         let result=[]
         if (event=="all"){
