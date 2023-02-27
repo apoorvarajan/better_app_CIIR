@@ -54,7 +54,34 @@ class Results extends React.Component<any,any>{
         (document.getElementById("myDropdown") as HTMLInputElement).classList.remove("show");
         this.setState({
             resultingList:result,
-            pu:pu
+            up:pu
+        })
+    }
+    np_click(val:boolean){
+        let {low,up,resultingList}=this.state
+        let pu=up
+        let ol=low
+        if(val){
+            if(resultingList.length>=up+10){
+                pu=up+10
+            }
+            else{
+                pu=resultingList.length
+            }
+            ol+=10
+        }
+        else{
+            if(ol>9){
+                ol=low-10
+            }
+            else{
+                ol=0
+            }
+            pu-=10
+        }
+        this.setState({
+            up:pu,
+            low:ol
         })
     }
     render(){
@@ -138,6 +165,14 @@ class Results extends React.Component<any,any>{
                                         </tr>
                                 })}
                             </table>
+                            <div className="prev-next-buttons">
+                        {low >0 && <div className="details-page-button" onClick={()=>this.np_click(false)}>
+                            {"< Previous Page"}
+                        </div>}
+                        {up<resultingList.length && <div className="details-page-button" onClick={()=>this.np_click(true)}>
+                            {"Next Page >"}
+                        </div>}
+                    </div>
                         </div>}
                     </div>
         }
