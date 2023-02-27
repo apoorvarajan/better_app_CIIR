@@ -45,7 +45,12 @@ class Results extends React.Component<any,any>{
         const {searchResults}=this.props
         let result=[]
         let pu=10
-        result=searchResults.hits.filter((item:any)=> item.events.some((ev:any)=>{return ev.eventType == event}))
+        if (event=="all"){
+            result = searchResults.hits
+        }
+        else{
+            result=searchResults.hits.filter((item:any)=> item.events.some((ev:any)=>{return ev.eventType == event}))
+        }
         if(result.length>10){
             pu=10
         }
@@ -162,7 +167,7 @@ class Results extends React.Component<any,any>{
                                     <div className="dropdown">
                                         <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
                                         <div id="myDropdown" className="dropdown-content">
-                                            <a>All Events</a>
+                                            <a onClick={()=>this.eventfilter("all")}>All Events</a>
                                             {event_types && event_types.map((item:any)=>{
                                                 return <a onClick={()=>this.eventfilter(item)}>{item}</a>
                                             })}
