@@ -108,7 +108,6 @@ class Details extends React.Component<any,any>{
                             <div className="dropdown highlight-item">
                                 <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
                                     <div id="myDropdownDetails" className="dropdown-content">
-                                        <a href="#allevents">All Events</a>
                                         <a onClick={()=>this.eventfilter("all")}>All Events</a>
                                             {props.event_types && props.event_types.map((item:any)=>{
                                                 return <a onClick={()=>this.eventfilter(item)}>{item}</a>
