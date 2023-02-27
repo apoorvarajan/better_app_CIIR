@@ -26,9 +26,11 @@ class EventPage extends React.Component<any,any>{
                     {events.map((item:any,key:any)=>{
                         return <tr className={key%2==0?"tl_elem light":"tl_elem dark"}>
                             <td className="tl_cell event_th_cell">{item.eventType}</td>
-                            <td className="tl_cell event_th_cell"> ? </td>
+                            <td className="tl_cell event_th_cell"> {item.agentSpanList && item.agentSpanList.length>0 ? item.agentSpanList.map((item2:any,key:any)=> item2.string+(key!=0?",":"")):"None"} </td>
                             <td className="tl_cell event_th_cell">{item.anchorSpan.string}</td>
-                            <td className="tl_cell event_th_cell">?</td>
+                            <td className="tl_cell event_th_cell">
+                                {item.patientSpanList && item.patientSpanList.length>0 ? item.patientSpanList.map((item2:any,key:any)=> item2.string+(key!=0?",":"")):"None"}
+                            </td>
                         </tr>
                     })}
                 </table>

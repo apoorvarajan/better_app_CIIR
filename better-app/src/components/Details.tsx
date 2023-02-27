@@ -39,6 +39,13 @@ class Details extends React.Component<any,any>{
         //     low:0
         // })
     }
+    taskterms(){
+        let {subRes}=this.props
+        
+    }
+    requestterms(){
+        let {subRes}=this.props
+    }
     render(){
         let {props}=this
         let event_list: any = []
@@ -104,11 +111,11 @@ class Details extends React.Component<any,any>{
                         </div>
                         <div className="highlight-items">
                             <div className="highlight-item">
-                                <input type="checkbox" name="taskterms"/>
+                                <input type="checkbox" name="taskterms" onChange={()=>this.taskterms()}/>
                                 <label>Task terms</label>
                             </div>
                             <div className="highlight-item">
-                                <input type="checkbox" name="requestterms"/>
+                                <input type="checkbox" name="requestterms" onChange={()=>this.requestterms()}/>
                                 <label>Request terms</label>
                             </div>
                             <div className="dropdown highlight-item">
