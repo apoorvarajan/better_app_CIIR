@@ -6,7 +6,9 @@ class Results extends React.Component<any,any>{
         super(props);
         this.state={
             low:0,
-            up:0
+            up:0,
+            filterevent:null,
+            resultingList:[]
         }
     }
 
@@ -27,7 +29,8 @@ class Results extends React.Component<any,any>{
                 }
             }
             _this.setState({
-                up:pu
+                up:pu,
+                resultingList:searchResults.hits
             })
         })
     }
@@ -37,14 +40,31 @@ class Results extends React.Component<any,any>{
     filterFunction(){
         (document.getElementById("myDropdown") as HTMLInputElement).classList.toggle("show");
       }
+    eventfilter(event:any){
+        const {searchResults}=this.props
+        let result=[]
+        let pu=10
+        result=searchResults.hits.filter((item:any)=> item.events.some((ev:any)=>{return ev.eventType == event}))
+        if(result.length>10){
+            pu=10
+        }
+        else{
+            pu=result.length
+        }
+        (document.getElementById("myDropdown") as HTMLInputElement).classList.remove("show");
+        this.setState({
+            resultingList:result,
+            pu:pu
+        })
+    }
     render(){
-        const {tasks,searchResults,load_sub,subRes,docitem, doc_key, showEventsPage, showEvent,goBackDetails}=this.props
+        const {tasks,searchResults,load_sub,subRes,docitem, doc_key, showEventsPage, showEvent,goBackDetails,event_types}=this.props
         let today_dt = new Date()
         let date = today_dt.toDateString()
         if (this.props.show_doc_detail){
             return <Details goBackDetails={goBackDetails} showEvent={showEvent} showEventsPage={showEventsPage} getDocdetails={this.getDocdetails.bind(this)} searchResults={searchResults} subRes={subRes} datestring={date} docitem={docitem} doc_key={doc_key}/>
         }
-        const {low,up} = this.state
+        const {low,up,resultingList} = this.state
         let urlParams= Object.fromEntries(new URLSearchParams(window.location.search).entries())
         if (urlParams.reqNum && urlParams.taskNum && tasks){
             let sel_task= tasks.filter((item:any)=>{return item.taskNum === urlParams.taskNum})[0]
@@ -91,11 +111,10 @@ class Results extends React.Component<any,any>{
                                 <div className="dropdown">
                                     <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
                                     <div id="myDropdown" className="dropdown-content">
-                                        <a href="#allevents">All Events</a>
-                                        <a href="#ev1">Event 1</a>
-                                        <a href="#ev2">Event 2</a>
-                                        <a href="#ev3">Event 3</a>
-                                        <a href="#ev4">Event 4</a>
+                                        <a>All Events</a>
+                                        {event_types && event_types.map((item:any)=>{
+                                            return <a onClick={()=>this.eventfilter(item)}>{item}</a>
+                                        })}
                                     </div>
                                 </div>
                                 <div>
@@ -105,14 +124,14 @@ class Results extends React.Component<any,any>{
                             </div>
                             <table className="doc_table">
                                 <tr className="task_table_head doc_table_row">
-                                    <th className="th_cell">SN</th>
+                                    <th className="th_cell">Rank</th>
                                     <th className="th_cell">Document Id</th>
                                     <th className="th_cell">Snippet from document</th>
                                     <th></th>
                                 </tr>
-                                {searchResults && searchResults.hits && searchResults.hits.length>0 && searchResults.hits.slice(low,up).map((item:any,key:any)=>{
+                                {resultingList && resultingList.length>0 && resultingList.slice(low,up).map((item:any,key:any)=>{
                                     return <tr className="doc_table_row">
-                                                <td className="doc_table_col"> {key+1 || "No."} </td>
+                                                <td className="doc_table_col"> {item.Rank} </td>
                                                 <td className="doc_table_col">{item.docid}</td>
                                                 <td className="doc_table_col">{item.docText.slice(0,75)+"............."}</td>
                                                 <td className="details_button" onClick={()=> this.getDocdetails(item,key)}> Details </td>

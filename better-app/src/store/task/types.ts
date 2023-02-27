@@ -16,6 +16,7 @@ export interface HomeState {
     load_sub:boolean;
     doc_key:any;
     showEvent:boolean;
+    event_types:any;
 }
 
 export const SET_TASKS = "SET_TASKS"

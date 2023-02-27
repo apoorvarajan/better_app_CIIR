@@ -23,7 +23,8 @@ const mapStateToProps = (state: HomeState) => ({
     searchResults:state.searchResults,
     load_sub:state.load_sub,
     doc_key:state.doc_key,
-    showEvent:state.showEvent
+    showEvent:state.showEvent,
+    event_types:state.event_types
   });
   
   const mapDispatchToProps = (dispatch: Dispatch) => ({

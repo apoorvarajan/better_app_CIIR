@@ -19,6 +19,7 @@ export interface State {
     load_sub:boolean;
     doc_key:any;
     showEvent:boolean;
+    event_types:any;
 }
 
 const composeEnhancers =

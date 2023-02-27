@@ -16,7 +16,8 @@ const initialState: HomeState = {
     searchResults:null,
     load_sub:false,
     doc_key:null,
-    showEvent:false
+    showEvent:false,
+    event_types:null
 };
 
 const reducer = (
@@ -37,7 +38,20 @@ const reducer = (
         case DOC_DETAIL:
             return {...state, show_doc_detail:true,docitem:action.docitem,doc_key:action.key}
         case SET_DOCS:
-            return {...state, subRes:action.docs, searchResults:action.docs.searchResults, load_sub:false}
+            let hits = action.docs.searchResults.hits
+            let event_list: any = []
+            for(let i =0 ; i< hits.length;i++){
+                for(let j=0; j<hits[i].events.length;j++){
+                    if(!event_list.includes(hits[i].events[j].eventType)){
+                        event_list.push(hits[i].events[j].eventType)
+                    }
+                }
+            }
+            let sR = action.docs.searchResults
+            for(let i=0; i<action.docs.searchResults.hits.length; i++ ){
+                sR.hits[i]['Rank']=i+1
+            }
+            return {...state, subRes:action.docs, searchResults:sR, load_sub:false, event_types:event_list}
         case TASK_SELECTED:
             return {...state,task_select:action.val === state.task_select?-1:action.val}
         case RESET_HOME:
