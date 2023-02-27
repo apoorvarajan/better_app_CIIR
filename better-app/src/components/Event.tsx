@@ -1,10 +1,20 @@
 import React from 'react'
+import EventGraph from './EventGraph'
 class EventPage extends React.Component<any,any>{
     constructor(props:any){
         super(props)
+        this.state={
+            showEventGraph:false
+        }
+    }
+    showEventG(){
+        this.setState({
+            showEventGraph:true
+        })
     }
     render(){
         let {events,showEventsPage}=this.props;
+        let {showEventGraph}=this.state
         return <div>
                 <table className="tasktable event_table">
                     <tr className="task_table_head">
@@ -22,10 +32,11 @@ class EventPage extends React.Component<any,any>{
                         </tr>
                     })}
                 </table>
+                {showEventGraph ? <EventGraph/> : null}
                 <div className="event-bottom">
-                    <div className="event-bottom-button">
+                    {!showEventGraph? <div className="event-bottom-button" onClick={()=> this.showEventG()}>
                         Event Graph
-                    </div>
+                    </div>: null}
                     <div className="event-bottom-button" onClick={()=>showEventsPage(false)}> Go Back </div>
                 </div>
             </div>

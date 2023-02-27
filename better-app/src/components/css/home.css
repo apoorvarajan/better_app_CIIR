@@ -325,4 +325,11 @@
     justify-content: space-between;
     font-size: 1.3em;
   }
+  .eventgraph-page{
+    margin: 3em 0em;
+    width: 100%;
+    text-align: center;
+    font-size: 1.3em;
+    color: #881c1c;
+  }
   

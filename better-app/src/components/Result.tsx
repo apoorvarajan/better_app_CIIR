@@ -132,7 +132,7 @@ class Results extends React.Component<any,any>{
                                     Task Statement:
                                 </td>
                                 <td className="val1">
-                                    {subRes.taskStmt}
+                                    {subRes && subRes.taskStmt}
                                 </td>
                             </tr>
                             <tr className="row1">
@@ -140,7 +140,7 @@ class Results extends React.Component<any,any>{
                                     Request Text:
                                 </td>
                                 <td className="val1">
-                                    {subRes.reqText}
+                                    {subRes && subRes.reqText}
                                 </td>
                             </tr>
                             <tr className="row1">
