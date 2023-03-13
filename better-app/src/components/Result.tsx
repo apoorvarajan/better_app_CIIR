@@ -157,7 +157,7 @@ class Results extends React.Component<any,any>{
                                 </td>
                             </tr>
                         </table>
-                        {load_sub?<div className="loading_sub">Loading Submissions......</div>
+                        {load_sub?<div className="loading_sub">Please Wait......</div>
                         :<div>
                             <div className="sub_filters">
                                 <div className="filter-heading">
@@ -186,14 +186,14 @@ class Results extends React.Component<any,any>{
                             <table className="doc_table">
                                 <tr className="task_table_head doc_table_row">
                                     <th className="th_cell">Rank</th>
-                                    <th className="th_cell">Document Id</th>
+                                    {/* <th className="th_cell">Document Id</th> */}
                                     <th className="th_cell">Snippet from document</th>
                                     <th></th>
                                 </tr>
                                 {resultingList && resultingList.length>0 && resultingList.slice(low,up).map((item:any,key:any)=>{
                                     return <tr className="doc_table_row">
                                                 <td className="doc_table_col"> {item.Rank} </td>
-                                                <td className="doc_table_col">{item.docid}</td>
+                                                {/* <td className="doc_table_col">{item.docid}</td> */}
                                                 <td className="doc_table_col">{translate_english? item.translatedDocText.slice(0,75)+"............." : item.docText.slice(0,75)+"............."}</td>
                                                 <td className="details_button" onClick={()=> this.getDocdetails(item,key)}> Details </td>
                                         </tr>

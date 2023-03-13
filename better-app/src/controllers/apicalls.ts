@@ -1,6 +1,7 @@
+const api = "https://goulburn.cs.umass.edu:9300" //https://cessnock.cs.umass.edu:9300
 async function getTasks_api() {
     try {
-      const response = await fetch('https://cessnock.cs.umass.edu:9300/tasks');
+      const response = await fetch(api+'/tasks');
       const data = await response.json();
       console.log(data)
       return data;
@@ -12,7 +13,7 @@ async function getTasks_api() {
   async function postTasks_api(body:any) {
       console.log(JSON.stringify(body))
     try {
-      const response = await fetch('https://cessnock.cs.umass.edu:9300/tasks',{
+      const response = await fetch(api+'/tasks',{
           'method':'POST',
           'body':JSON.stringify(body),
           'headers':{
@@ -31,7 +32,7 @@ async function getTasks_api() {
   async function postRequest_api(body:any,taskNum:string) {
     console.log(JSON.stringify(body))
   try {
-    const response = await fetch('https://cessnock.cs.umass.edu:9300/tasks/'+taskNum+'/requests',{
+    const response = await fetch(api+'/tasks/'+taskNum+'/requests',{
         'method':'POST',
         'body':JSON.stringify(body),
         'headers':{
@@ -53,7 +54,7 @@ async function getTasks_api() {
                             "taskNum":taskNum,
                             "reqNum":reqNum
                         }
-        const response = await fetch('https://cessnock.cs.umass.edu:9300/submissions',{
+        const response = await fetch(api+'/submissions',{
             'body':JSON.stringify(reqBody),
             'method':'POST',
             'headers':{

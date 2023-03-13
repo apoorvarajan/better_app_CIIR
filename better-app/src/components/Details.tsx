@@ -126,14 +126,14 @@ class Details extends React.Component<any,any>{
                                 {props.datestring}
                             </td>
                         </tr>
-                        <tr className="row1">
+                        {/* <tr className="row1">
                             <td className="subheading_1">
                                 Doc No.:
                             </td>
                             <td className="val1">
                                 {props.docitem && props.docitem.docid}
                             </td>
-                        </tr>
+                        </tr> */}
                         <tr className="row1">
                             <td className="subheading_1">
                                 Rank:
@@ -178,7 +178,7 @@ class Details extends React.Component<any,any>{
                     </div>
                     <div className="details_bottom_buttons">
                         <div className="see_events_button" onClick={()=> props.goBackDetails()}>
-                            Submissions Page
+                            Back To Seacrh Results
                         </div>
                         <div className="see_events_button" onClick={()=>props.showEventsPage(true)}>
                             See Events in the Document
