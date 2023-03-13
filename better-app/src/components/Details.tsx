@@ -147,30 +147,36 @@ class Details extends React.Component<any,any>{
                     :<div>
                     <div className="highlight-filter">
                         <div className="highlight-head">
-                            HIGHLIGHT:
+                            FILTERS:
                         </div>
                         <div className="highlight-items">
-                            <div className="highlight-item">
-                                <input type="checkbox" name="taskterms" onChange={(e:any)=>this.taskterms(e)}/>
-                                <label>Task terms</label>
-                            </div>
-                            <div className="highlight-item">
-                                <input type="checkbox" name="requestterms" onChange={(e:any)=>this.requestterms(e)}/>
-                                <label>Request terms</label>
-                            </div>
-                            <div className="dropdown highlight-item">
-                                <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
-                                    <div id="myDropdownDetails" className="dropdown-content details-width">
-                                        <a onClick={()=>this.eventfilter("all")}>All Events</a>
-                                            {event_list && event_list.map((item:any)=>{
-                                                return <a onClick={()=>this.eventfilter(item)}>{item}</a>
-                                        })}
-                                    </div>
-                            </div>
+                            <div className="high_inside">
+                                <div className="highlight-head">
+                                    HIGHLIGHT:
+                                </div>
+                                <div className="highlight-item">
+                                    <input type="checkbox" name="taskterms" onChange={(e:any)=>this.taskterms(e)}/>
+                                    <label>Task terms</label>
+                                </div>
+                                <div className="highlight-item">
+                                    <input type="checkbox" name="requestterms" onChange={(e:any)=>this.requestterms(e)}/>
+                                    <label>Request terms</label>
+                                </div>
+                                <div className="dropdown highlight-item">
+                                    <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
+                                        <div id="myDropdownDetails" className="dropdown-content details-width">
+                                            <a onClick={()=>this.eventfilter("all")}>All Events</a>
+                                                {event_list && event_list.map((item:any)=>{
+                                                    return <a onClick={()=>this.eventfilter(item)}>{item}</a>
+                                            })}
+                                        </div>
+                                </div>
                         </div>
-                        <div className="highlight-items">
-                        <input type="checkbox" name="translate" checked={props.translate_english} onChange={(e)=> props.translateEnglish(e.target.checked)}/>
-                        <label>Translate to english</label>
+                        {/* <div className="highlight-items"> */}
+                        <div>
+                            <input type="checkbox" name="translate" checked={props.translate_english} onChange={(e)=> props.translateEnglish(e.target.checked)}/>
+                            <label>Translate to english</label>
+                        </div>
                     </div>
                     </div>
                     <div className="docText" id="detailsDocText">

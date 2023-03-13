@@ -183,6 +183,7 @@ class Results extends React.Component<any,any>{
                                     </div>
                                 </div>
                             </div>
+                            {resultingList && resultingList.length>0?<div className="showing_result_text"> Showing results {low+1} to {up} out of {searchResults.hits.length}</div>:null}
                             <table className="doc_table">
                                 <tr className="task_table_head doc_table_row">
                                     <th className="th_cell">Rank</th>
