@@ -38,13 +38,14 @@
       margin-top: 8em;
   }
   .tasktable{
-    margin: 2em;
+    margin: auto;
     font-weight: bold;
     color: black;
     box-shadow: 0 10px 16px 0 rgb(0 0 0 / 5%), 0 6px 20px 0 rgb(0 0 0 / 5%) !important;
     /* padding: 0em 1em 1em 1em; */
     /* background: linear-gradient(90deg, rgba(164,158,158,1) 0%, rgba(238,238,238,1) 84%); */
     border-collapse: collapse;
+    width: 90%;
   }
   .task_table_head{
         box-shadow: 0 10px 16px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 10%) !important;
@@ -167,6 +168,8 @@
     border: 1px solid #881c1c;
     font-size: 1.2em;
     /* margin-top: 2em; */
+    min-width: 60em;
+    margin: 2em auto;
   }
   .doc_table_row{
       height: 3em;
@@ -365,4 +368,16 @@
   }
   .high_inside{
     display: flex;
+  }
+  .results_wrap{
+    padding: 0em 5em;
+  }
+  .home_cell{
+    height: 3em;
+  }
+  .wrap-event-graph{
+    margin: auto;
+    width: 1200px;
+    height: 700px;
+    border: 1px solid #881c1c;
   }

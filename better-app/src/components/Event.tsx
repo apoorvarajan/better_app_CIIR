@@ -34,7 +34,7 @@ class EventPage extends React.Component<any,any>{
                         </tr>
                     })}
                 </table>
-                {showEventGraph ? <EventGraph/> : null}
+                {showEventGraph ? <EventGraph events={events}/> : null}
                 <div className="event-bottom">
                     {!showEventGraph? <div className="event-bottom-button" onClick={()=> this.showEventG()}>
                         Event Graph

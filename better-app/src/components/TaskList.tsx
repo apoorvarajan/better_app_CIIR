@@ -81,9 +81,9 @@ class TaskList extends React.Component<any,any> {
         return <div className="tasktable_container">{tasks && tasks.length>0?
                     <table className="tasktable">
                         <tr className="task_table_head">
-                            <th className="th_cell"> Task ID </th>
-                            <th className="th_cell"> Task Title </th>
-                            <th className="th_cell"> Task Statement </th>
+                            <th className="th_cell home_cell"> Task ID </th>
+                            <th className="th_cell home_cell"> Task Title </th>
+                            <th className="th_cell home_cell"> Task Statement </th>
                             <th></th>
                         </tr>
                         {tasks_list.map((item:any,key:any)=>{

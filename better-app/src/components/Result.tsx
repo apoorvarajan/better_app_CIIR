@@ -158,7 +158,7 @@ class Results extends React.Component<any,any>{
                             </tr>
                         </table>
                         {load_sub?<div className="loading_sub">Please Wait......</div>
-                        :<div>
+                        :<div className="results_wrap">
                             <div className="sub_filters">
                                 <div className="filter-heading">
                                     Filters
