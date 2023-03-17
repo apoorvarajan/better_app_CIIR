@@ -161,12 +161,12 @@ class Results extends React.Component<any,any>{
                         :<div className="results_wrap">
                             <div className="result-goback-button" onClick={()=>window.location.href="/"}> Go Back </div>
                             <div className="sub_filters">
-                                <div className="filter-heading">
+                                {/* <div className="filter-heading">
                                     Filters
-                                </div>
+                                </div> */}
                                 <div className="result-filter-wrap">
                                     <div className="dropdown">
-                                        <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
+                                        <button onClick={()=>this.filterFunction()} className="dropbtn">Filter by event Type</button>
                                         <div id="myDropdown" className="dropdown-content">
                                             <a onClick={()=>this.eventfilter("all")}>All Events</a>
                                             {event_types && event_types.map((item:any)=>{

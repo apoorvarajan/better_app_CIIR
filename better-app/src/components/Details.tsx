@@ -5,6 +5,12 @@ import { removeStopwords} from 'stopword'
 class Details extends React.Component<any,any>{
     constructor(props:any){
         super(props);
+        this.state={
+            task_highlight:false,
+            request_highlight:false,
+            text_highlight:"",
+            event_highlight:""
+        }
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
     wrapperRef:any = React.createRef();
@@ -29,10 +35,31 @@ class Details extends React.Component<any,any>{
             getDocdetails(searchResults.hits[doc_key-1],doc_key-1)
         }
     }
+    highlight(){
+        let {props,state}=this
+        let {task_highlight,request_highlight,text_highlight,event_highlight}=state
+        let doc = props.translate_english? props.docitem.translatedDocText : props.docitem.docText
+        let inputText:any = document.getElementById("detailsDocText")
+        let text = doc.replaceAll(text_highlight,`<span class='highlight_text'>${text_highlight}</span>`);
+        let {subRes}=this.props
+        let taskterms = removeStopwords(subRes.taskStmt.split(" "))
+        taskterms.map((item)=>{
+            let taskregex = new RegExp(/\b + item + \b/, 'gi')
+            text = text.replaceAll(taskregex,`<span class='highlight_task'>$1</span>`)
+        })
+        inputText.innerHTML=text
+    }
+    containsFilter(e:any){
+        let {props}=this
+        let doc = props.translate_english? props.docitem.translatedDocText : props.docitem.docText
+        let inputText:any = document.getElementById("detailsDocText")
+        let text = doc.replaceAll(e,`<span class='highlight_text'>${e}</span>`);
+        inputText.innerHTML=text
+    }
     filterFunction(){
         (document.getElementById("myDropdownDetails") as HTMLInputElement).classList.toggle("show");
-      }
-      eventfilter(event:any){
+    }
+    eventfilter(event:any){
         let high_classes = document.getElementsByClassName("highlight_event")
         while(high_classes.length>0){
             high_classes[0].className=""
@@ -164,9 +191,6 @@ class Details extends React.Component<any,any>{
                     {props.showEvent ? <EventPage doc_key={props.doc_key} events={props.docitem.events} showEventsPage={props.showEventsPage}/>
                     :<div>
                     <div className="highlight-filter">
-                        <div className="highlight-head">
-                            FILTERS:
-                        </div>
                         <div className="highlight-items">
                             <div className="high_inside">
                                 <div className="highlight-head">
@@ -174,14 +198,14 @@ class Details extends React.Component<any,any>{
                                 </div>
                                 <div className="highlight-item">
                                     <input type="checkbox" name="taskterms" onChange={(e:any)=>this.taskterms(e)}/>
-                                    <label>Task terms</label>
+                                    <label>Show task terms</label>
                                 </div>
                                 <div className="highlight-item">
                                     <input type="checkbox" name="requestterms" onChange={(e:any)=>this.requestterms(e)}/>
-                                    <label>Request terms</label>
+                                    <label>Show request terms</label>
                                 </div>
                                 <div className="dropdown highlight-item" ref={this.wrapperRef}>
-                                    <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
+                                    <button onClick={()=>this.filterFunction()} className="dropbtn">Filter by event Type</button>
                                         <div id="myDropdownDetails" className="dropdown-content details-width">
                                             <a onClick={()=>this.eventfilter("all")}>All Events</a>
                                                 {event_list && event_list.map((item:any)=>{
@@ -194,6 +218,9 @@ class Details extends React.Component<any,any>{
                         <div>
                             <input type="checkbox" name="translate" checked={props.translate_english} onChange={(e)=> props.translateEnglish(e.target.checked)}/>
                             <label>Translate to english</label>
+                        </div>
+                        <div>
+                            Highlight: <input  onChange={(e)=>this.containsFilter(e.target.value)}/> in the document
                         </div>
                     </div>
                     </div>
