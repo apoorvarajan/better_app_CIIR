@@ -170,12 +170,14 @@
     /* margin-top: 2em; */
     min-width: 60em;
     margin: 2em auto;
+    border-collapse: collapse;
   }
   .doc_table_row{
       height: 3em;
   }
   .doc_table_col{
     padding: 0em 1em;
+    border-bottom: 0.05em solid #881c1c;
   }
   .details_button{
     padding: 0em 1em;
