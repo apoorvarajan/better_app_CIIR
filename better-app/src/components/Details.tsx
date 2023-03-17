@@ -1,9 +1,25 @@
 import React from 'react'
 import EventPage from './Event'
+import { removeStopwords} from 'stopword'
+
 class Details extends React.Component<any,any>{
     constructor(props:any){
-        super(props)
+        super(props);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
+    wrapperRef:any = React.createRef();
+    componentDidMount() {
+        document.addEventListener("mousedown", this.handleClickOutside);
+      }
+    
+      componentWillUnmount() {
+        document.removeEventListener("mousedown", this.handleClickOutside);
+      }
+    handleClickOutside(event:any) {
+        if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+            (document.getElementById("myDropdownDetails") as HTMLInputElement).classList.remove("show");
+        }
+      }
     np_click(val:boolean){
         let {getDocdetails,searchResults, doc_key}=this.props;
         if(val){
@@ -44,13 +60,14 @@ class Details extends React.Component<any,any>{
     taskterms(e:any){
         if(e.target.checked){
             let {subRes}=this.props
-            let taskterms = subRes.taskStmt.split(" ")
-            taskterms = taskterms.map((item:any)=> item!=""?" "+item+" ":null)
+            let taskterms = removeStopwords(subRes.taskStmt.split(" "))
+            //taskterms = taskterms.map((item:any)=> item!=""?" "+item+" ":null)
             let inputText = document.getElementById("detailsDocText")
-            let innerHTML = inputText?.innerHTML
+            let innerHTML:any = inputText?.innerHTML
             for(let i=0;i<taskterms.length;i++){
-                let index = innerHTML?.indexOf(taskterms[i])
-                if(index && index>=0 && inputText){
+                let index:any = innerHTML?.indexOf(taskterms[i])
+                let re = new RegExp('[A-Za-z0-9]')
+                if(index && index>=0 && inputText && !(re.test(innerHTML?.substring(index-1,index)) || re.test(innerHTML?.substring(index+taskterms[i].length,index+taskterms[i].length+1)))){
                     innerHTML = innerHTML?.substring(0,index) + "<span class='highlight_task'>" + innerHTML?.substring(index,index+taskterms[i].length) + "</span>" + innerHTML?.substring(index + taskterms[i].length);
                     inputText.innerHTML = innerHTML;
                 }
@@ -67,13 +84,14 @@ class Details extends React.Component<any,any>{
         let {subRes}=this.props
         if(e.target.checked){
             let {subRes}=this.props
-            let reqterms = subRes.reqText.split(" ")
-            reqterms = reqterms.map((item:any)=> item!="" ? " "+item+" ":null)
+            let reqterms = removeStopwords(subRes.reqText.split(" "))
+            //reqterms = reqterms.map((item:any)=> item!="" ? " "+item+" ":null)
             let inputText = document.getElementById("detailsDocText")
-            let innerHTML = inputText?.innerHTML
+            let innerHTML:any = inputText?.innerHTML
             for(let i=0;i<reqterms.length;i++){
                 let index = innerHTML?.indexOf(reqterms[i])
-                if(index && index>=0 && inputText){
+                let re = new RegExp('[A-Za-z0-9]')
+                if(index && index>=0 && inputText && !(re.test(innerHTML?.substring(index-1,index)) || re.test(innerHTML?.substring(index+reqterms[i].length,index+reqterms[i].length+1)))){
                     innerHTML = innerHTML?.substring(0,index) + "<span class='highlight_request'>" + innerHTML?.substring(index,index+reqterms[i].length) + "</span>" + innerHTML?.substring(index + reqterms[i].length);
                     inputText.innerHTML = innerHTML;
                 }
@@ -162,7 +180,7 @@ class Details extends React.Component<any,any>{
                                     <input type="checkbox" name="requestterms" onChange={(e:any)=>this.requestterms(e)}/>
                                     <label>Request terms</label>
                                 </div>
-                                <div className="dropdown highlight-item">
+                                <div className="dropdown highlight-item" ref={this.wrapperRef}>
                                     <button onClick={()=>this.filterFunction()} className="dropbtn">Event Type</button>
                                         <div id="myDropdownDetails" className="dropdown-content details-width">
                                             <a onClick={()=>this.eventfilter("all")}>All Events</a>
@@ -179,8 +197,17 @@ class Details extends React.Component<any,any>{
                         </div>
                     </div>
                     </div>
-                    <div className="docText" id="detailsDocText">
-                        {props.translate_english? props.docitem.translatedDocText : props.docitem.docText}
+                    <div className="prev-next-buttons">
+                        <div>
+                            <div hidden={props.doc_key >0?false:true} className="details-page-button prev" onClick={()=>this.np_click(false)}>
+                                {"< Previous doc"}
+                            </div>
+                        </div>
+                        <div>
+                            <div hidden={props.doc_key<props.searchResults.hits.length?false:true} className="details-page-button next" onClick={()=>this.np_click(true)}>
+                                {"Next doc >"}
+                            </div>
+                        </div>
                     </div>
                     <div className="details_bottom_buttons">
                         <div className="see_events_button" onClick={()=> props.goBackDetails()}>
@@ -190,13 +217,8 @@ class Details extends React.Component<any,any>{
                             See Events in the Document
                         </div>
                     </div>
-                    <div className="prev-next-buttons">
-                        {props.doc_key >0 && <div className="details-page-button" onClick={()=>this.np_click(false)}>
-                            {"< Previous doc"}
-                        </div>}
-                        {props.doc_key<props.searchResults.hits.length && <div className="details-page-button" onClick={()=>this.np_click(true)}>
-                            {"Next doc >"}
-                        </div>}
+                    <div className="docText" id="detailsDocText">
+                        {props.translate_english? props.docitem.translatedDocText : props.docitem.docText}
                     </div>
                     </div>}
                 </div>

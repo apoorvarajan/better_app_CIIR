@@ -360,7 +360,7 @@
     background: lightcoral;
   }
   .highlight_event{
-    background: lightgrey;
+    background: yellow;
   }
   .showing_result_text{
     text-align: center;
@@ -386,8 +386,16 @@
     color: white;
     width: 10%;
     padding: 0.5em;
-    font-size: 0.6em;
+    /* font-size: 0.6em; */
     font-weight: bold;
     border-radius: 0.3em;
-    float: left;
+    /* float: left; */
+    text-align: center;
+    /* height: 2em; */
+  }
+  .prev{
+    float: left
+  }
+  .next{
+    float: right;
   }

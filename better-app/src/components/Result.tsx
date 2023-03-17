@@ -159,6 +159,7 @@ class Results extends React.Component<any,any>{
                         </table>
                         {load_sub?<div className="loading_sub">Please Wait......</div>
                         :<div className="results_wrap">
+                            <div className="result-goback-button" onClick={()=>window.location.href="/"}> Go Back </div>
                             <div className="sub_filters">
                                 <div className="filter-heading">
                                     Filters
@@ -185,9 +186,20 @@ class Results extends React.Component<any,any>{
                             </div>
                             {resultingList && resultingList.length>0?
                             <div className="showing_result_text"> 
-                                <div className="result-goback-button" onClick={()=>window.location.href="/"}> Go Back </div>
                                 Showing results {low+1} to {up} out of {searchResults.hits.length}
                             </div>:null}
+                            <div className="prev-next-buttons">
+                                <div>
+                                    <div hidden={low >0?false:true} className="details-page-button prev" onClick={()=>this.np_click(false)}>
+                                        {"< Previous Page"}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div hidden={up<resultingList.length?false:true} className="details-page-button next" onClick={()=>this.np_click(true)}>
+                                        {"Next Page >"}
+                                    </div>
+                                </div>
+                            </div>
                             <table className="doc_table">
                                 <tr className="task_table_head doc_table_row">
                                     <th className="th_cell">Rank</th>
@@ -204,14 +216,6 @@ class Results extends React.Component<any,any>{
                                         </tr>
                                 })}
                             </table>
-                            <div className="prev-next-buttons">
-                        {low >0 && <div className="details-page-button" onClick={()=>this.np_click(false)}>
-                            {"< Previous Page"}
-                        </div>}
-                        {up<resultingList.length && <div className="details-page-button" onClick={()=>this.np_click(true)}>
-                            {"Next Page >"}
-                        </div>}
-                    </div>
                         </div>}
                     </div>
         }
