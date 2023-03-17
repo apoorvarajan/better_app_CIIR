@@ -110,7 +110,7 @@ class Results extends React.Component<any,any>{
     }
     render(){
         const {tasks,searchResults,load_sub,subRes,docitem, doc_key, showEventsPage, 
-            showEvent,goBackDetails,event_types, translateEnglish, translate_english}=this.props
+            showEvent,goBackDetails,event_types, translateEnglish, translate_english, gobackHome}=this.props
         let today_dt = new Date()
         let date = today_dt.toDateString()
         if (this.props.show_doc_detail){
@@ -183,7 +183,11 @@ class Results extends React.Component<any,any>{
                                     </div>
                                 </div>
                             </div>
-                            {resultingList && resultingList.length>0?<div className="showing_result_text"> Showing results {low+1} to {up} out of {searchResults.hits.length}</div>:null}
+                            {resultingList && resultingList.length>0?
+                            <div className="showing_result_text"> 
+                                <div className="result-goback-button" onClick={()=>window.location.href="/"}> Go Back </div>
+                                Showing results {low+1} to {up} out of {searchResults.hits.length}
+                            </div>:null}
                             <table className="doc_table">
                                 <tr className="task_table_head doc_table_row">
                                     <th className="th_cell">Rank</th>

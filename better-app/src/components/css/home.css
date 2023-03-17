@@ -381,3 +381,13 @@
     height: 700px;
     border: 1px solid #881c1c;
   }
+  .result-goback-button{
+    background: #881c1c;
+    color: white;
+    width: 10%;
+    padding: 0.5em;
+    font-size: 0.6em;
+    font-weight: bold;
+    border-radius: 0.3em;
+    float: left;
+  }
