@@ -114,11 +114,11 @@ class Details extends React.Component<any,any>{
         }
         return <div> 
                     <div className="header">
-                        University of Massachusetts Amherst
+                        UMass Amherst, Center for Intelligent Information Retrieval, CLEAR team
                     </div>
-                    <div className="site_name">
+                    {/* <div className="site_name">
                         Center for Intelligent Information Retrieval
-                    </div>
+                    </div> */}
                     <table className="sub_page_top">
                         <tr className="row1">
                             <td className="subheading_1">

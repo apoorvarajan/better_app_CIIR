@@ -20,11 +20,11 @@ class Home extends React.Component<any,any>{
         let hash = window.location.hash
         return<div>
                     <div className="header">
-                        University of Massachusetts Amherst
+                        UMass Amherst, Center for Intelligent Information Retrieval, CLEAR team
                     </div>
-                    <div className="site_name">
+                    {/* <div className="site_name">
                         Center for Intelligent Information Retrieval
-                    </div>
+                    </div> */}
                     <div className="home-sec1">
                         {!this.props.add_request_screen && !this.props.add_task_screen ? <div className="task-add-buttons">
                             <div className="home-button" onClick={()=>this.dec(false)}>
