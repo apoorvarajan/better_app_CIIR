@@ -211,7 +211,7 @@ class Details extends React.Component<any,any>{
                     </div>
                     <div className="details_bottom_buttons">
                         <div className="see_events_button" onClick={()=> props.goBackDetails()}>
-                            Back To Seacrh Results
+                            Back To Search Results
                         </div>
                         <div className="see_events_button" onClick={()=>props.showEventsPage(true)}>
                             See Events in the Document
