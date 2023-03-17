@@ -174,10 +174,13 @@
   }
   .doc_table_row{
       height: 3em;
+      box-shadow: 0px 2px 1px #ccc;
   }
   .doc_table_col{
-    padding: 0em 1em;
+    padding: 0.5em 1em;
     border-bottom: 0.05em solid #881c1c;
+    font-size: 0.85em;
+    /* text-align: center; */
   }
   .details_button{
     padding: 0em 1em;
