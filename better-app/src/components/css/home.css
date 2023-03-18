@@ -270,7 +270,7 @@
     padding: 1em;
     border-radius: 0.3em;
     margin: 0.2em 0em;
-    width: 70%;
+    /*width: 70%;*/
     display: flex;
     flex-direction: column-reverse;
     
@@ -423,9 +423,61 @@
   }
   .all_event_filter_wrap{
     display: flex;
+    justify-content: space-between;
   }
   .filter-details{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin-bottom: 1em;
+  }
+  .event-bottom-button:hover,
+  .event-bottom-button:focus,
+  .see_events_button:hover,
+  .see_events_button:focus,
+  .details-page-button:hover,
+  .details-page-button:focus,
+  .result-goback-button:hover,
+  .result-goback-button:focus,
+  .all_event_button:hover,
+  .all_event_button:focus{
+    transform: scale(1.05);
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+  }
+  .doc_table_row:hover,
+  .doc_table_row:focus{
+    /*transform: scale(1.02);*/
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+  }
+  .search-input:hover,
+  .search-input:focus{
+    transform: scale(1.1);
+  }
+  #myDropdownDetails>a:hover,
+  #myDropdownDetails>a:focus,
+  #myDropdown>a:hover,
+  #myDropdown>a.focus{
+    background: #f0c1c1;
+    cursor: pointer;
+  }
+  .dropbtn:after {
+    content: ' >>';
+    position: absolute;
+    opacity: 0;  
+    top: 14px;
+    right: -20px;
+    transition: 0.5s;
+    color: white;
+  }
+  
+  .dropbtn:hover{
+    padding-right: 24px;
+    padding-left:8px;
+  }
+  
+  .dropbtn:hover:after {
+    opacity: 1;
+    /*right: 10px;*/
+    position: inherit;
   }

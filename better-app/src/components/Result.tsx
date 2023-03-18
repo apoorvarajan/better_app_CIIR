@@ -11,7 +11,8 @@ class Results extends React.Component<any,any>{
             low:0,
             up:0,
             filterevent:null,
-            resultingList:[]
+            resultingList:[],
+            event_highlight:""
         }
     }
 
@@ -63,7 +64,8 @@ class Results extends React.Component<any,any>{
         this.setState({
             resultingList:result,
             up:pu,
-            low:0
+            low:0,
+            event_highlight:event
         })
     }
     np_click(val:boolean){
@@ -172,7 +174,9 @@ class Results extends React.Component<any,any>{
                                 </div> */}
                                 <div className="result-filter-wrap">
                                     <div className="dropdown">
-                                        <button onClick={()=>this.filterFunction()} className="dropbtn">Filter by event Type</button>
+                                        <button onClick={()=>this.filterFunction()} className="dropbtn">
+                                        {this.state.event_highlight!="all" ? "Filter by event Type: "+this.state.event_highlight:"Filter by event Type"}
+                                        </button>
                                         <div id="myDropdown" className="dropdown-content">
                                             <a onClick={()=>this.eventfilter("all")}>All Events</a>
                                             {event_types && event_types.map((item:any)=>{
@@ -222,13 +226,13 @@ class Results extends React.Component<any,any>{
                                     {/* <th></th> */}
                                 </tr>
                                 {resultingList && resultingList.length>0 && resultingList.slice(low,up).map((item:any,key:any)=>{
-                                    return <tr className="doc_table_row">
+                                    return <tr className="doc_table_row"  onClick={()=> this.getDocdetails(item,key)}>
                                                 <td className="doc_table_col"> {item.Rank} </td>
                                                 {/* <td className="doc_table_col">{item.docid}</td> */}
                                                 <td className="doc_table_col">
-                                                    <a  href="javascript:void(0);"  onClick={()=> this.getDocdetails(item,key)}>
+                                                    {/* <a  href="javascript:void(0);"> */}
                                                         {translate_english? item.translatedDocText.slice(0,75)+"............." : item.docText.slice(0,75)+"............."}
-                                                    </a>
+                                                    {/* </a> */}
                                                 </td>
                                                 {/* <td className="details_button" onClick={()=> this.getDocdetails(item,key)}> Details </td> */}
                                         </tr>

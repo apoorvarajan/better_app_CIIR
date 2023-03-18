@@ -75,6 +75,9 @@ class Details extends React.Component<any,any>{
         if (event=="all"){
             result = docitem.events.map((item:any)=> item.anchorSpan.string)
         }
+        else if(event=="none"){
+            result=[]
+        }
         else{
             result=docitem.events.map((item:any)=> item.eventType == event && item.anchorSpan.string)
         }
@@ -88,6 +91,9 @@ class Details extends React.Component<any,any>{
                 inputText.innerHTML = innerHTML;
             }
         }
+        this.setState({
+            event_highlight:event
+        })
         
     }
     taskterms(e:any){
@@ -213,12 +219,15 @@ class Details extends React.Component<any,any>{
                                     <label>Show request terms</label>
                                 </div>
                                 <div className="dropdown highlight-item" ref={this.wrapperRef}>
-                                    <button onClick={()=>this.filterFunction()} className="dropbtn">Filter by event Type</button>
+                                    <button onClick={()=>this.filterFunction()} className="dropbtn">
+                                        {this.state.event_highlight!="none" ? "Filter by event Type: "+this.state.event_highlight:"Filter by event Type"}
+                                    </button>
                                         <div id="myDropdownDetails" className="dropdown-content details-width">
                                             <a onClick={()=>this.eventfilter("all")}>All Events</a>
                                                 {event_list && event_list.map((item:any)=>{
                                                     return <a onClick={()=>this.eventfilter(item)}>{item}</a>
                                             })}
+                                            <a onClick={()=>this.eventfilter("none")}>None</a>
                                         </div>
                                 </div>
                         </div>
@@ -228,12 +237,9 @@ class Details extends React.Component<any,any>{
                                 <input type="checkbox" name="translate" checked={props.translate_english} onChange={(e)=> props.translateEnglish(e.target.checked)}/>
                                 <label>Translate to english</label>
                             </div>
-                            <div>
-                                Highlight: <input  onChange={(e)=>this.containsFilter(e.target.value)}/> in the document
+                            <div  className="search-input">
+                                Highlight: <input onChange={(e)=>this.containsFilter(e.target.value)}/> in the document
                             </div>
-                            {!showEventGraph? <div className="event-bottom-button details-eg" onClick={()=> this.showEventG(true)}>
-                                                    Show event graph
-                                                </div>: null}
                         </div>
                     </div>
                     </div>
@@ -253,6 +259,9 @@ class Details extends React.Component<any,any>{
                         <div className="see_events_button" onClick={()=> props.goBackDetails()}>
                             Back To Search Results
                         </div>
+                        {!showEventGraph? <div className="see_events_button" onClick={()=> this.showEventG(true)}>
+                            Show event graph
+                        </div>: null}
                         <div className="see_events_button" onClick={()=>props.showEventsPage(true)}>
                             See Events in the Document
                         </div>
