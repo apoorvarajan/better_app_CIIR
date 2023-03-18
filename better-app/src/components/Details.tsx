@@ -231,7 +231,7 @@ class Details extends React.Component<any,any>{
                             </div>
                         </div>
                         <div>
-                            <div hidden={props.doc_key<props.searchResults.hits.length?false:true} className="details-page-button next" onClick={()=>this.np_click(true)}>
+                            <div hidden={props.searchResults && props.doc_key<props.searchResults.hits.length?false:true} className="details-page-button next" onClick={()=>this.np_click(true)}>
                                 {"Next doc >"}
                             </div>
                         </div>

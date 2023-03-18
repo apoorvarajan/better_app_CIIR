@@ -18,6 +18,8 @@ export interface HomeState {
     showEvent:boolean;
     event_types:any;
     translate_english:boolean;
+    showalle:boolean;
+    showAllEventGraph:boolean;
 }
 
 export const SET_TASKS = "SET_TASKS"
@@ -34,6 +36,8 @@ export const LOADER_HOME="LOADER_HOME"
 export const SHOW_EVENT = "SHOW_EVENT"
 export const GOBACK_DETAILS="GOBACK_DETAILS"
 export const TRANSLATE_ENGLISH="TRANSLATE_ENGLISH"
+export const SHOW_ALL_EVENTS="SHOW_ALL_EVENTS"
+export const SHOW_ALL_EVENT_GRAPH="SHOW_ALL_EVENT_GRAPH"
 
 export interface SetTasks extends Action {
     type: typeof SET_TASKS;
@@ -104,6 +108,16 @@ export interface TranslateEnglish  extends Action {
     val:boolean
 }
 
+export interface ShowAllEvents extends Action {
+    type: typeof SHOW_ALL_EVENTS;
+    val:boolean
+}
+
+export interface ShowAllEventGraph extends Action {
+    type: typeof SHOW_ALL_EVENT_GRAPH;
+    val:boolean
+}
+
 export type HomeActions = SetTasks 
                         | DecrementAction 
                         | AddTaskClick 
@@ -117,4 +131,6 @@ export type HomeActions = SetTasks
                         | LoaderHome
                         | showEventPage
                         | GoBackDetails
-                        | TranslateEnglish;
+                        | TranslateEnglish
+                        | ShowAllEvents
+                        | ShowAllEventGraph;

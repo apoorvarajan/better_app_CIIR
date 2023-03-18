@@ -1,8 +1,8 @@
 import { HomeActions, SET_TASKS, DECREMENT, ADD_TASK_CLICK, SET_DOCS, DOC_DETAIL, ADD_REQUEST_CLICK, 
-    TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION, LOADER_HOME, SHOW_EVENT, GOBACK_DETAILS, TRANSLATE_ENGLISH } from "./types";
+    TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION, LOADER_HOME, SHOW_EVENT, GOBACK_DETAILS, TRANSLATE_ENGLISH,
+    SHOW_ALL_EVENTS, SHOW_ALL_EVENT_GRAPH } from "./types";
 import {Dispatch} from 'redux'
 import {getTasks_api,postTasks_api, submission_api,postRequest_api} from '../../controllers/apicalls'
-import Home from "../../components/Home";
 
 export const loaderHome = (val:boolean) =>{
     return {
@@ -107,5 +107,15 @@ export const goBackDetails=():HomeActions => ({
 
 export const translateEnglish = (val:boolean):HomeActions => ({
     type:TRANSLATE_ENGLISH,
+    val
+})
+
+export const showAllEvents = (val:boolean):HomeActions => ({
+    type:SHOW_ALL_EVENTS,
+    val
+})
+
+export const showAllEventGraph = (val:boolean):HomeActions => ({
+    type:SHOW_ALL_EVENT_GRAPH,
     val
 })

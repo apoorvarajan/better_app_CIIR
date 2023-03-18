@@ -1,5 +1,6 @@
 import { HomeState, HomeActions, SET_TASKS, ADD_TASK_CLICK, SELECT_TASK, SET_DOCS, DOC_DETAIL, ADD_REQUEST_CLICK, 
-    TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION, LOADER_HOME, SHOW_EVENT, GOBACK_DETAILS, TRANSLATE_ENGLISH } from "./types";
+    TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION, LOADER_HOME, SHOW_EVENT, GOBACK_DETAILS, TRANSLATE_ENGLISH,
+    SHOW_ALL_EVENTS, SHOW_ALL_EVENT_GRAPH } from "./types";
 
 const initialState: HomeState = {
     tasks:[],
@@ -18,7 +19,9 @@ const initialState: HomeState = {
     doc_key:null,
     showEvent:false,
     event_types:null,
-    translate_english:false
+    translate_english:false,
+    showalle:false,
+    showAllEventGraph:false
 };
 
 const reducer = (
@@ -65,6 +68,10 @@ const reducer = (
             return { ...state, show_doc_detail:false,docitem:null,doc_key:null}
         case TRANSLATE_ENGLISH:
             return { ...state, translate_english:action.val}
+        case SHOW_ALL_EVENTS:
+            return { ...state, showalle:action.val}
+        case SHOW_ALL_EVENT_GRAPH:
+            return { ...state, showAllEventGraph:action.val}
         default:
             return state;
     }

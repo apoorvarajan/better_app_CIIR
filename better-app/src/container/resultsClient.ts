@@ -9,7 +9,9 @@ import {
     docDetailPage,
     showEventsPage,
     goBackDetails,
-    translateEnglish
+    translateEnglish,
+    showAllEvents,
+    showAllEventGraph
   } from "../store/task";
 import ResultComponent from '../components/Result'
   
@@ -26,7 +28,9 @@ const mapStateToProps = (state: HomeState) => ({
     doc_key:state.doc_key,
     showEvent:state.showEvent,
     event_types:state.event_types,
-    translate_english:state.translate_english
+    translate_english:state.translate_english,
+    showalle:state.showalle,
+    showAllEG:state.showAllEventGraph
   });
   
   const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -38,7 +42,9 @@ const mapStateToProps = (state: HomeState) => ({
     docDetailPage: (docNum:any,key:any)=> dispatch(docDetailPage(docNum,key)),
     showEventsPage: (val:boolean) => dispatch(showEventsPage(val)),
     goBackDetails: () => dispatch(goBackDetails()),
-    translateEnglish: (val:boolean) => dispatch(translateEnglish(val))
+    translateEnglish: (val:boolean) => dispatch(translateEnglish(val)),
+    showAllEvents: (val:boolean)=>dispatch(showAllEvents(val)),
+    showAllEventGraph:(val:boolean)=>dispatch(showAllEventGraph(val))
 
   });
   

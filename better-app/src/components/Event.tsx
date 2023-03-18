@@ -13,9 +13,10 @@ class EventPage extends React.Component<any,any>{
         })
     }
     render(){
-        let {events,showEventsPage}=this.props;
+        let {events,showEventsPage,allevents}=this.props;
         let {showEventGraph}=this.state
         return <div>
+                {allevents? <div className="result-goback-button allevent-button" onClick={()=>showEventsPage(false)}> Go Back </div>:null}
                 <table className="tasktable event_table">
                     <tr className="task_table_head">
                         <th className="th_cell event_th_cell"> Event Type</th>
@@ -35,12 +36,12 @@ class EventPage extends React.Component<any,any>{
                     })}
                 </table>
                 {showEventGraph ? <EventGraph events={events}/> : null}
-                <div className="event-bottom">
+                {!allevents?<div className="event-bottom">
                     {!showEventGraph? <div className="event-bottom-button" onClick={()=> this.showEventG()}>
                         Event Graph
                     </div>: null}
                     <div className="event-bottom-button" onClick={()=>showEventsPage(false)}> Go Back </div>
-                </div>
+                </div>:null}
             </div>
     }
 }

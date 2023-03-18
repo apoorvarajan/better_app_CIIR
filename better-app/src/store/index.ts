@@ -21,6 +21,8 @@ export interface State {
     showEvent:boolean;
     event_types:any;
     translate_english:boolean;
+    showalle:boolean;
+    showAllEventGraph:boolean;
 }
 
 const composeEnhancers =

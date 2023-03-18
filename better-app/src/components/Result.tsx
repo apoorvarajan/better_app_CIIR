@@ -2,6 +2,8 @@ import React from 'react'
 import { translateEnglish } from '../store/task';
 import './css/home.css'
 import Details from './Details'
+import EventPage from './Event';
+import EventGraph from './EventGraph';
 class Results extends React.Component<any,any>{
     constructor(props:any){
         super(props);
@@ -110,7 +112,8 @@ class Results extends React.Component<any,any>{
     }
     render(){
         const {tasks,searchResults,load_sub,subRes,docitem, doc_key, showEventsPage, 
-            showEvent,goBackDetails,event_types, translateEnglish, translate_english, gobackHome}=this.props
+            showEvent,goBackDetails,event_types, translateEnglish, translate_english, showAllEvents,
+            showalle, combined_events, showAllEventGraph, showAllEG}=this.props
         let today_dt = new Date()
         let date = today_dt.toDateString()
         if (this.props.show_doc_detail){
@@ -159,6 +162,9 @@ class Results extends React.Component<any,any>{
                         </table>
                         {load_sub?<div className="loading_sub">Please Wait......</div>
                         :<div className="results_wrap">
+                            {showAllEG?
+                            <EventGraph allevents={true} events={resultingList.flatMap((item:any)=>{return item.events})} showEventsPage={showAllEventGraph}/>
+                            :showalle?<EventPage allevents={true} events={searchResults.hits.flatMap((item:any)=>{return item.events})} showEventsPage={showAllEvents}/>:<div>
                             <div className="result-goback-button" onClick={()=>window.location.href="/"}> Go Back </div>
                             <div className="sub_filters">
                                 {/* <div className="filter-heading">
@@ -183,10 +189,18 @@ class Results extends React.Component<any,any>{
                                         <label>Translate to english</label>
                                     </div>
                                 </div>
+                                <div className="all_event_filter_wrap">
+                                    <div className="all_event_button" onClick={()=>showAllEvents(true)}>
+                                        Show events of all 50 documents
+                                    </div>
+                                    <div className="all_event_button" onClick={()=>showAllEventGraph(true)}>
+                                        Show Event graph for {low+1} to {up} documents
+                                    </div>
+                                </div>
                             </div>
                             {resultingList && resultingList.length>0?
                             <div className="showing_result_text"> 
-                                Showing results {low+1} to {up} out of {searchResults.hits.length}
+                                Showing results {low+1} to {up} out of {searchResults && searchResults.hits && searchResults.hits.length}
                             </div>:null}
                             <div className="prev-next-buttons">
                                 <div>
@@ -220,7 +234,7 @@ class Results extends React.Component<any,any>{
                                         </tr>
                                 })}
                             </table>
-                        </div>}
+                        </div>}</div>}
                     </div>
         }
         else{
