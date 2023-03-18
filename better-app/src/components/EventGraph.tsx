@@ -63,7 +63,7 @@ class EventGraph extends React.Component<any,any>{
     }
     render(){
         let {graphobj}=this.state
-        let {allevents,showEventsPage}=this.props;
+        let {allevents,showEventsPage,showEventG}=this.props;
         if(graphobj)
         {
             const Graph = () => {
@@ -180,7 +180,7 @@ class EventGraph extends React.Component<any,any>{
                         />
             }
             return <div className="eventgraph-page">
-                        {allevents?<div className="result-goback-button allevent-button" onClick={()=>allevents?showEventsPage(false):null}> Go Back </div>:null}
+                        <div className="result-goback-button allevent-button" onClick={()=>allevents?showEventsPage(false):showEventG(false)}> Go Back </div>
                         <div className="wrap-event-graph">
                             <Graph/>
                         </div>

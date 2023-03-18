@@ -331,6 +331,9 @@
     border-radius: 0.3em;
     font-size: 1.1em;
   }
+  .details-eg{
+    font-size: 0.8em;
+  }
   .light{
     background: #fdf5f5;
   }
@@ -420,4 +423,9 @@
   }
   .all_event_filter_wrap{
     display: flex;
+  }
+  .filter-details{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1em;
   }

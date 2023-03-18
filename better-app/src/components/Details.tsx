@@ -1,6 +1,7 @@
 import React from 'react'
 import EventPage from './Event'
 import { removeStopwords} from 'stopword'
+import EventGraph from './EventGraph'
 
 class Details extends React.Component<any,any>{
     constructor(props:any){
@@ -9,18 +10,23 @@ class Details extends React.Component<any,any>{
             task_highlight:false,
             request_highlight:false,
             text_highlight:"",
-            event_highlight:""
+            event_highlight:"",
+            showEventGraph:false
         }
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
     wrapperRef:any = React.createRef();
     componentDidMount() {
         document.addEventListener("mousedown", this.handleClickOutside);
-      }
-    
-      componentWillUnmount() {
+    }
+    showEventG(val:boolean){
+        this.setState({
+            showEventGraph:val
+        })
+    } 
+    componentWillUnmount() {
         document.removeEventListener("mousedown", this.handleClickOutside);
-      }
+    }
     handleClickOutside(event:any) {
         if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
             (document.getElementById("myDropdownDetails") as HTMLInputElement).classList.remove("show");
@@ -133,6 +139,7 @@ class Details extends React.Component<any,any>{
     }
     render(){
         let {props}=this
+        let {showEventGraph}=this.state
         let event_list: any = []
         for(let j=0; j<props.docitem.events.length;j++){
             if(!event_list.includes(props.docitem.events[j].eventType)){
@@ -188,7 +195,8 @@ class Details extends React.Component<any,any>{
                             </td>
                         </tr>
                     </table>
-                    {props.showEvent ? <EventPage doc_key={props.doc_key} events={props.docitem.events} showEventsPage={props.showEventsPage}/>
+                    {showEventGraph ? <EventGraph events={props.docitem.events} showEventG={this.showEventG.bind(this)}/> :
+                    props.showEvent ? <EventPage doc_key={props.doc_key} events={props.docitem.events} showEventsPage={props.showEventsPage}/>
                     :<div>
                     <div className="highlight-filter">
                         <div className="highlight-items">
@@ -215,12 +223,17 @@ class Details extends React.Component<any,any>{
                                 </div>
                         </div>
                         {/* <div className="highlight-items"> */}
-                        <div>
-                            <input type="checkbox" name="translate" checked={props.translate_english} onChange={(e)=> props.translateEnglish(e.target.checked)}/>
-                            <label>Translate to english</label>
-                        </div>
-                        <div>
-                            Highlight: <input  onChange={(e)=>this.containsFilter(e.target.value)}/> in the document
+                        <div className="filter-details">
+                            <div>
+                                <input type="checkbox" name="translate" checked={props.translate_english} onChange={(e)=> props.translateEnglish(e.target.checked)}/>
+                                <label>Translate to english</label>
+                            </div>
+                            <div>
+                                Highlight: <input  onChange={(e)=>this.containsFilter(e.target.value)}/> in the document
+                            </div>
+                            {!showEventGraph? <div className="event-bottom-button details-eg" onClick={()=> this.showEventG(true)}>
+                                                    Show event graph
+                                                </div>: null}
                         </div>
                     </div>
                     </div>
