@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import ForceGraph2D, { ForceGraphMethods } from 'react-force-graph-2d';
+import ReactDOMServer from 'react-dom/server';
 const { useRef } = React;
 
 class EventGraph extends React.Component<any,any>{
@@ -77,6 +78,64 @@ class EventGraph extends React.Component<any,any>{
                         fgRef.current.d3Force('radial', null);
                     }
                 }, []);
+                graphobj.links.forEach((link:any) => {
+                    const a = graphobj.nodes[link.source];
+                    const b = graphobj.nodes[link.target];
+                    a && !a.neighbors && (a.neighbors = []);
+                    b && !b.neighbors && (b.neighbors = []);
+                    a && a.neighbors.push(b);
+                    b && b.neighbors.push(a);
+          
+                    a && !a.links && (a.links = []);
+                    b && !b.links && (b.links = []);
+                    a && a.links.push(link);
+                    b && b.links.push(link);
+                });
+                  const [highlightNodes, setHighlightNodes] = useState(new Set());
+                const [highlightLinks, setHighlightLinks] = useState(new Set());
+                const [hoverNode, setHoverNode] = useState(null);
+                const updateHighlight = () => {
+                    setHighlightNodes(highlightNodes);
+                    setHighlightLinks(highlightLinks);
+                };
+        
+              const handleNodeHover = (node:any,hovered:any) => {
+                highlightNodes.clear();
+                highlightLinks.clear();
+                if (node) {
+                  highlightNodes.add(node);
+                  node.neighbors.forEach((neighbor:any) => highlightNodes.add(neighbor));
+                  node.links.forEach((link:any) => highlightLinks.add(link));
+                }
+                setHoverNode(node || null);
+                updateHighlight();
+              };
+        
+              const handleLinkHover = (link:any) => {
+                highlightNodes.clear();
+                highlightLinks.clear();
+        
+                if (link) {
+                  highlightLinks.add(link);
+                  highlightNodes.add(link.source);
+                  highlightNodes.add(link.target);
+                }
+        
+                updateHighlight();
+            };
+            const handleClick = useCallback((node:any) => {
+                // Aim at node from outside it
+                node.fx=node.x
+                node.fy=node.y
+                const distance = 100000;
+                const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
+      
+                fgRef.current.cameraPosition(
+                  { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, // new position
+                  node, // lookAt ({ x, y, z })
+                  1000  // ms transition duration
+                );
+              }, [fgRef]);
                 return <ForceGraph2D
                             //dagMode={'radialout'}
                             dagLevelDistance={500}
@@ -96,12 +155,32 @@ class EventGraph extends React.Component<any,any>{
                             nodeColor={()=>"black"}
                             ref={fgRef}
                             cooldownTicks={100}
-                            onEngineStop={() => fgRef.current.zoomToFit(400)}
+                            //onEngineStop={() => fgRef.current.zoomToFit(400)}
                             linkLineDash={(link) => link === graphobj.links[0] ? [50, 50] : [5, 0]}
                             //linkColor={()=>"#881c1c"}
                             nodeVisibility={true}
                             linkLabel={'relation'}
+                            nodeLabel={(d:any)=>{
+                                let tooltip:any = []
+                                    {d.links.map((item:any)=>(
+                                        tooltip.push(item.source.name+" -> "+item.relation+" -> "+item.target.name)
+                                    ))}
+                                let html_elem= <div>
+                                    {tooltip.map((item:any)=>{
+                                        return <div>
+                                            {item}
+                                        </div>
+                                    })}
+                                </div>
+                                return ReactDOMServer.renderToString(<div dangerouslySetInnerHTML={{__html:ReactDOMServer.renderToString(html_elem)}}/>)
+                                //return tooltip.join(":::")
+                            }}
                             linkWidth={0.9}
+                            onNodeHover={handleNodeHover}
+                            onLinkHover={handleLinkHover}
+                            linkDirectionalParticles={4}
+                            linkDirectionalParticleWidth={link => highlightLinks.has(link) ? 4 : 0}
+                            onNodeClick={handleClick}
                             //dagLevelDistance={2}
                             //linkOpacity={1}
                             
@@ -115,10 +194,10 @@ class EventGraph extends React.Component<any,any>{
                     
                                 ctx.fillStyle = 'white' //'rgba(255, 255, 255, 0.8)';
                                 ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, bckgDimensions[0], bckgDimensions[1]);
-                    
+                                
                                 ctx.textAlign = 'center';
                                 ctx.textBaseline = 'middle';
-                                ctx.fillStyle = 'black' //node.color;
+                                ctx.fillStyle = highlightNodes.has(node) ? 'red' : 'black' //node.color;
                                 ctx.fillText(label, node.x, node.y);
                     
                                 node.__bckgDimensions = bckgDimensions; // to re-use in nodePointerAreaPaint
@@ -179,6 +258,7 @@ class EventGraph extends React.Component<any,any>{
                             }}
                         />
             }
+            
             return <div className="eventgraph-page">
                         <div className="result-goback-button allevent-button" onClick={()=>allevents?showEventsPage(false):showEventG(false)}> Go Back </div>
                         <div className="wrap-event-graph">
