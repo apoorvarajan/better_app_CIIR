@@ -66,7 +66,7 @@ class EventGraph extends React.Component<any,any>{
     }
     render(){
         let {graphobj}=this.state
-        let {allevents,showEventsPage,showEventG,graph_input, summary}=this.props;
+        let {allevents,showEventsPage,showEventG,graph_input, summary, translate_english, translateEnglish}=this.props;
         if(graph_input){
             graphobj=graph_input
         }
@@ -214,7 +214,7 @@ class EventGraph extends React.Component<any,any>{
                               }}
                               linkCanvasObjectMode={(() => 'after')}
                               linkCanvasObject={(link:any, ctx) => {
-                                const MAX_FONT_SIZE = 5;
+                                const MAX_FONT_SIZE = 10;
                                 const LABEL_NODE_MARGIN = 2//Graph.nodeRelSize() * 1.5;
                       
                                 const start:any = link.source;

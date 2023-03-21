@@ -202,8 +202,8 @@ class Details extends React.Component<any,any>{
                             </td>
                         </tr>
                     </table>
-                    {showEventGraph ? <EventGraph translate_english={translate_english} events={props.docitem.events} showEventG={this.showEventG.bind(this)}/> :
-                    props.showEvent ? <EventPage translate_english={translate_english} doc_key={props.doc_key} events={props.docitem.events} showEventsPage={props.showEventsPage}/>
+                    {showEventGraph ? <EventGraph translateEnglish={props.translateEnglish} translate_english={translate_english} events={props.docitem.events} showEventG={this.showEventG.bind(this)}/> :
+                    props.showEvent ? <EventPage translateEnglish={props.translateEnglish} translate_english={translate_english} doc_key={props.doc_key} events={props.docitem.events} showEventsPage={props.showEventsPage}/>
                     :<div>
                     <div className="highlight-filter">
                         <div className="highlight-items">
@@ -213,11 +213,11 @@ class Details extends React.Component<any,any>{
                                 </div>
                                 <div className="highlight-item">
                                     <input type="checkbox" name="taskterms" onChange={(e:any)=>this.taskterms(e)}/>
-                                    <label>Show task terms</label>
+                                    <label>Show task statement terms</label>
                                 </div>
                                 <div className="highlight-item">
                                     <input type="checkbox" name="requestterms" onChange={(e:any)=>this.requestterms(e)}/>
-                                    <label>Show request terms</label>
+                                    <label>Show request title terms</label>
                                 </div>
                                 <div className="dropdown highlight-item" ref={this.wrapperRef}>
                                     <button onClick={()=>this.filterFunction()} className="dropbtn">

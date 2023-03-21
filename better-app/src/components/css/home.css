@@ -546,3 +546,8 @@
     margin: auto;
     text-align: center;
   }
+  .input_sum{
+    line-height: 1.5em;
+    margin: 1em;
+    width: 80%;
+  }

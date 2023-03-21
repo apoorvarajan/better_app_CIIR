@@ -13,12 +13,16 @@ class EventPage extends React.Component<any,any>{
         })
     }
     render(){
-        let {events,showEventsPage,allevents, translate_english}=this.props;
+        let {events,showEventsPage,allevents, translate_english, translateEnglish}=this.props;
         let {showEventGraph}=this.state
         return <div>
                 {allevents? <div className="result-goback-button allevent-button" onClick={()=>showEventsPage(false)}> Go Back </div>:
                 <div className="event-bottom">
                 <div className="event-bottom-button" onClick={()=>showEventsPage(false)}> Go Back </div>
+                <div>
+                                <input type="checkbox" name="translate" checked={translate_english} onChange={(e)=> translateEnglish(e.target.checked)}/>
+                                <label>Translate to english</label>
+                </div>
             </div>}
                 <table className="tasktable event_table">
                     <tr className="task_table_head">
