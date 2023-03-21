@@ -13,7 +13,7 @@ class EventPage extends React.Component<any,any>{
         })
     }
     render(){
-        let {events,showEventsPage,allevents}=this.props;
+        let {events,showEventsPage,allevents, translate_english}=this.props;
         let {showEventGraph}=this.state
         return <div>
                 {allevents? <div className="result-goback-button allevent-button" onClick={()=>showEventsPage(false)}> Go Back </div>:
@@ -30,10 +30,10 @@ class EventPage extends React.Component<any,any>{
                     {events.map((item:any,key:any)=>{
                         return <tr className={key%2==0?"tl_elem light":"tl_elem dark"}>
                             <td className="tl_cell event_th_cell">{item.eventType}</td>
-                            <td className="tl_cell event_th_cell"> {item.agentSpanList && item.agentSpanList.length>0 ? item.agentSpanList.map((item2:any,key:any)=> item2.string+(key!=0?",":"")):"None"} </td>
-                            <td className="tl_cell event_th_cell">{item.anchorSpan.string}</td>
+                            <td className="tl_cell event_th_cell"> {item.agentSpanList && item.agentSpanList.length>0 ? item.agentSpanList.map((item2:any,key:any)=> (translate_english ? item2.translatedString : item2.string)+(key!=0?",":"")):"None"} </td>
+                            <td className="tl_cell event_th_cell">{translate_english ? item.anchorSpan.translatedString : item.anchorSpan.string}</td>
                             <td className="tl_cell event_th_cell">
-                                {item.patientSpanList && item.patientSpanList.length>0 ? item.patientSpanList.map((item2:any,key:any)=> item2.string+(key!=0?",":"")):"None"}
+                                {item.patientSpanList && item.patientSpanList.length>0 ? item.patientSpanList.map((item2:any,key:any)=> (translate_english ? item2.translatedString : item2.string)+(key!=0?",":"")):"None"}
                             </td>
                         </tr>
                     })}

@@ -1,6 +1,6 @@
 import { HomeState, HomeActions, SET_TASKS, ADD_TASK_CLICK, SELECT_TASK, SET_DOCS, DOC_DETAIL, ADD_REQUEST_CLICK, 
     TASK_SELECTED, RESET_HOME, LOADING_SUBMISSION, LOADER_HOME, SHOW_EVENT, GOBACK_DETAILS, TRANSLATE_ENGLISH,
-    SHOW_ALL_EVENTS, SHOW_ALL_EVENT_GRAPH } from "./types";
+    SHOW_ALL_EVENTS, SHOW_ALL_EVENT_GRAPH, EVENT_SUMMARY } from "./types";
 
 const initialState: HomeState = {
     tasks:[],
@@ -21,7 +21,8 @@ const initialState: HomeState = {
     event_types:null,
     translate_english:false,
     showalle:false,
-    showAllEventGraph:false
+    showAllEventGraph:false,
+    showEventSummary:false
 };
 
 const reducer = (
@@ -72,6 +73,8 @@ const reducer = (
             return { ...state, showalle:action.val}
         case SHOW_ALL_EVENT_GRAPH:
             return { ...state, showAllEventGraph:action.val}
+        case EVENT_SUMMARY:
+            return { ...state, showEventSummary:action.val}
         default:
             return state;
     }

@@ -11,7 +11,8 @@ class EventGraph extends React.Component<any,any>{
         }
     }
     componentDidMount(){
-        let {events} = this.props
+        let {events,summary,translate_english} = this.props
+        if(!summary){
         let obj:any=[]
         events.map((item:any,key:any)=>{
             if(item && item.agentSpanList && item.agentSpanList.length>0){
@@ -20,9 +21,9 @@ class EventGraph extends React.Component<any,any>{
                         item.patientSpanList.map((patient:any)=>{
                             if(agent.string && agent.string!="")
                             obj.push({
-                                'agent':agent.string,
-                                'anchor':item.eventType + "("+item.anchorSpan.string +")",
-                                'patient':patient.string,
+                                'agent':translate_english ? agent.translatedString : agent.string,
+                                'anchor':item.eventType + "(" + (translate_english ? item.anchorSpan.translatedString : item.anchorSpan.string) +")",
+                                'patient':translate_english ? patient.translatedString : patient.string,
                             })
                         })
                     }
@@ -62,12 +63,16 @@ class EventGraph extends React.Component<any,any>{
             graphobj:graph
         })
     }
+    }
     render(){
         let {graphobj}=this.state
-        let {allevents,showEventsPage,showEventG}=this.props;
+        let {allevents,showEventsPage,showEventG,graph_input, summary}=this.props;
+        if(graph_input){
+            graphobj=graph_input
+        }
         if(graphobj)
         {
-            const Graph = () => {
+            const Graph:any = () => {
                 const fgRef:any = useRef<ForceGraphMethods>(null);
                 React.useEffect(() => {
                     if(fgRef.current){
@@ -260,7 +265,7 @@ class EventGraph extends React.Component<any,any>{
             }
             
             return <div className="eventgraph-page">
-                        <div className="result-goback-button allevent-button" onClick={()=>allevents?showEventsPage(false):showEventG(false)}> Go Back </div>
+                        {!summary? <div className="result-goback-button allevent-button" onClick={()=>allevents?showEventsPage(false):showEventG(false)}> Go Back </div>:null}
                         <div className="wrap-event-graph">
                             <Graph/>
                         </div>

@@ -145,6 +145,7 @@ class Details extends React.Component<any,any>{
     }
     render(){
         let {props}=this
+        let {translate_english}=props;
         let {showEventGraph}=this.state
         let event_list: any = []
         for(let j=0; j<props.docitem.events.length;j++){
@@ -201,8 +202,8 @@ class Details extends React.Component<any,any>{
                             </td>
                         </tr>
                     </table>
-                    {showEventGraph ? <EventGraph events={props.docitem.events} showEventG={this.showEventG.bind(this)}/> :
-                    props.showEvent ? <EventPage doc_key={props.doc_key} events={props.docitem.events} showEventsPage={props.showEventsPage}/>
+                    {showEventGraph ? <EventGraph translate_english={translate_english} events={props.docitem.events} showEventG={this.showEventG.bind(this)}/> :
+                    props.showEvent ? <EventPage translate_english={translate_english} doc_key={props.doc_key} events={props.docitem.events} showEventsPage={props.showEventsPage}/>
                     :<div>
                     <div className="highlight-filter">
                         <div className="highlight-items">

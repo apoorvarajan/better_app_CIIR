@@ -23,6 +23,7 @@ export interface State {
     translate_english:boolean;
     showalle:boolean;
     showAllEventGraph:boolean;
+    showEventSummary:boolean;
 }
 
 const composeEnhancers =

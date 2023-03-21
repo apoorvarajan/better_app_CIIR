@@ -1,9 +1,9 @@
 import React from 'react'
-import { translateEnglish } from '../store/task';
 import './css/home.css'
 import Details from './Details'
 import EventPage from './Event';
 import EventGraph from './EventGraph';
+import EventSummary from './EventSummary'
 class Results extends React.Component<any,any>{
     constructor(props:any){
         super(props);
@@ -115,7 +115,7 @@ class Results extends React.Component<any,any>{
     render(){
         const {tasks,searchResults,load_sub,subRes,docitem, doc_key, showEventsPage, 
             showEvent,goBackDetails,event_types, translateEnglish, translate_english, showAllEvents,
-            showalle, combined_events, showAllEventGraph, showAllEG}=this.props
+            showalle, combined_events, showAllEventGraph, showAllEG, eventSummaryPage, showEventSummary}=this.props
         let today_dt = new Date()
         let date = today_dt.toDateString()
         if (this.props.show_doc_detail){
@@ -164,10 +164,13 @@ class Results extends React.Component<any,any>{
                         </table>
                         {load_sub?<div className="loading_sub">Please Wait......</div>
                         :<div className="results_wrap">
-                            {showAllEG?
-                            <EventGraph allevents={true} events={resultingList.flatMap((item:any)=>{return item.events})} showEventsPage={showAllEventGraph}/>
-                            :showalle?<EventPage allevents={true} events={searchResults.hits.flatMap((item:any)=>{return item.events})} showEventsPage={showAllEvents}/>:<div>
+                            {showEventSummary?
+                            <EventSummary translate_english={translate_english} events={searchResults.hits.flatMap((item:any)=>{return item.events})} eventSummaryPage={eventSummaryPage}/>:
+                            showAllEG?
+                            <EventGraph translate_english={translate_english} allevents={true} events={resultingList.flatMap((item:any)=>{return item.events})} showEventsPage={showAllEventGraph}/>
+                            :showalle?<EventPage translate_english={translate_english} allevents={true} events={searchResults.hits.flatMap((item:any)=>{return item.events})} showEventsPage={showAllEvents}/>:<div>
                             <div className="result-goback-button" onClick={()=>window.location.href="/"}> Go Back </div>
+                            <div className="all_event_button sum_button" onClick={()=>eventSummaryPage(true)}>Go to event summary page</div>
                             <div className="sub_filters">
                                 {/* <div className="filter-heading">
                                     Filters
