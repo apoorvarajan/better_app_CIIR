@@ -9,6 +9,37 @@ class TaskList extends React.Component<any,any> {
             loading:false
         }
     }
+    componentDidMount(){
+        const {tasks}=this.props
+        if (tasks){
+            let obj=[]
+            for(let i=0;i<tasks.length;i++){
+                obj.push({
+                    "taskNum":tasks[i].taskNum,
+                    "taskTitle":tasks[i].taskTitle,
+                    "taskStmt":tasks[i].taskStmt,
+                    "taskNarr":tasks[i].taskNarr,
+                    "req_no":(tasks[i].requests && tasks[i].requests.length) || 0,
+                    "is_expanded":false,
+                    'is_selected':false
+                })
+                if(tasks[i].requests && tasks[i].requests.length){
+                    const req=tasks[i].requests
+                    for(let j=0;j<req.length;j++){
+                        obj.push({
+                            "reqNum":req[j].reqNum,
+                            "reqText":req[j].reqText,
+                            "taskNum":tasks[i].taskNum,
+                            "hidden":true
+                        })
+                    }
+                }
+            }
+            this.setState({
+                tasks_list:obj
+            })
+        }
+    }
     componentDidUpdate(prevProps:any){
         const {tasks}=this.props
         if (tasks !== prevProps.tasks){
