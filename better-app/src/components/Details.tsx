@@ -66,6 +66,7 @@ class Details extends React.Component<any,any>{
         (document.getElementById("myDropdownDetails") as HTMLInputElement).classList.toggle("show");
     }
     eventfilter(event:any){
+        let {translate_english}=this.props
         let high_classes = document.getElementsByClassName("highlight_event")
         while(high_classes.length>0){
             high_classes[0].className=""
@@ -79,7 +80,7 @@ class Details extends React.Component<any,any>{
             result=[]
         }
         else{
-            result=docitem.events.map((item:any)=> item.eventType == event && item.anchorSpan.string)
+            result=docitem.events.map((item:any)=> item.eventType == event && (translate_english ? item.anchorSpan.translatedString :item.anchorSpan.string))
         }
         (document.getElementById("myDropdownDetails") as HTMLInputElement).classList.remove("show");
         let inputText = document.getElementById("detailsDocText")
@@ -221,7 +222,7 @@ class Details extends React.Component<any,any>{
                                 </div>
                                 <div className="dropdown highlight-item" ref={this.wrapperRef}>
                                     <button onClick={()=>this.filterFunction()} className="dropbtn">
-                                        {this.state.event_highlight!="none" ? "Filter by event Type: "+this.state.event_highlight:"Filter by event Type"}
+                                        {this.state.event_highlight!="none" ? "Highlight by event Type: "+this.state.event_highlight:"Filter by event Type"}
                                     </button>
                                         <div id="myDropdownDetails" className="dropdown-content details-width">
                                             <a onClick={()=>this.eventfilter("all")}>All Events</a>
