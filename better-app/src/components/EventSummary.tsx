@@ -154,7 +154,7 @@ class EventSummary extends React.Component<any,any>{
         })
     }
     itemSelect(item:any,type:string){
-        let {selected_cat_value, selected_sub, selected_sub_value}=this.state
+        let {selected_cat_value, subcategory, selected_sub_value}=this.state
             // let obj:any=[]
             // item.value.map((item:any,key:any)=>{
             //     obj.push({
@@ -196,7 +196,8 @@ class EventSummary extends React.Component<any,any>{
             selected_category:type,
             selected_cat_value:type=="event"?item.key:selected_cat_value,
             selected_sub:type=='event'?null:item.key,
-            selected_sub_value:type=="event"?null:selected_sub_value
+            selected_sub_value:type=="event"?null:selected_sub_value,
+            subcategory:type=="event"?null:subcategory
         })
     }
     render(){
@@ -217,7 +218,7 @@ class EventSummary extends React.Component<any,any>{
                     <div className="sum_type">Event Type Summary</div>
                     <div className="sum_elem">
                         {sorted_eventarray && sorted_eventarray.map((item:any,key:any)=>{
-                            return <div id={"event_"+key} className="item_sum" onClick={()=>this.itemSelect(item,"event")}>{item.key+":"+item.value.length}</div>
+                            return <div id={"event_"+key} className={selected_cat_value==item.key && selected_category=="event"?"item_sum selected_cat":"item_sum"} onClick={()=>this.itemSelect(item,"event")}>{item.key+":"+item.value.length}</div>
                         })}
                     </div>
                 </div>
@@ -226,7 +227,7 @@ class EventSummary extends React.Component<any,any>{
                     <div className="sum_type">Agent Summary</div>
                     <div className="sum_elem">
                     {sorted_agentarray && sorted_agentarray.map((item:any,key:any)=>{
-                        return <div id={"agent_"+key}className="item_sum" onClick={()=>this.actorSelect(item,"agent")}>{item.key+":"+item.value.length}</div>
+                        return <div id={"agent_"+key}className={selected_cat_value==item.key && selected_category=="agent"?"item_sum selected_cat":"item_sum"} onClick={()=>this.actorSelect(item,"agent")}>{item.key+":"+item.value.length}</div>
                     })}
                     </div>
                 </div>
@@ -235,7 +236,7 @@ class EventSummary extends React.Component<any,any>{
                     <div className="sum_type">Anchor Summary</div>
                     <div className="sum_elem">
                     {sorted_anchorarray && sorted_anchorarray.map((item:any,key:any)=>{
-                        return <div id={"anchor_"+key} className="item_sum" onClick={()=>this.actorSelect(item,"anchor")}>{item.key+":"+item.value.length}</div>
+                        return <div id={"anchor_"+key} className={selected_cat_value==item.key && selected_category=="anchor"?"item_sum selected_cat":"item_sum"} onClick={()=>this.actorSelect(item,"anchor")}>{item.key+":"+item.value.length}</div>
                     })}
                     </div>
                 </div>
@@ -244,14 +245,14 @@ class EventSummary extends React.Component<any,any>{
                     <div className="sum_type">Patient Summary</div>
                     <div className="sum_elem">
                     {sorted_patientarray && sorted_patientarray.map((item:any,key:any)=>{
-                        return <div id={"patient_"+key} className="item_sum" onClick={()=>this.actorSelect(item,"patient")}>{item.key+":"+item.value.length}</div>
+                        return <div id={"patient_"+key} className={selected_cat_value==item.key && selected_category=="patient"?"item_sum selected_cat":"item_sum"} onClick={()=>this.actorSelect(item,"patient")}>{item.key+":"+item.value.length}</div>
                     })}
                     </div>
                 </div>
             </div>
             <div className="subcategory">
                 {subcategory?subcategory.map((item:any,key:any)=>{
-                    return <div id={"sub_"+key} className="subcategory_elem" onClick={()=>this.itemSelect(item,selected_category)}>
+                    return <div id={"sub_"+key} className={(selected_sub==item.key || selected_cat_value==item.key)?"subcategory_elem selected_sub":"subcategory_elem"} onClick={()=>this.itemSelect(item,selected_category)}>
                         {item.key+":"+item.value.length}
                     </div>
                 }):null}

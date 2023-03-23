@@ -551,3 +551,13 @@
     margin: 1em;
     width: 80%;
   }
+  .selected_cat{
+    background: black;
+    font-weight: bold;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 10%) !important;
+  }
+  .selected_sub{
+    background: #f0c1c1;
+  }
